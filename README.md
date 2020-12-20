@@ -17,26 +17,26 @@
 
 ##
 ### Types of diagram
- **1.** *Arc diagram* ❌
- **2.** *Flow diagram* ❌
- **3.** *Boxes and whiskers diagram* ❌
- **4.** *Gontt diagram* ❌
- **5.** *Venn diagram* ❌
- **6.** *Network diagram* ❌
- **7.** *Ribbonless chord diagram* ❌
- **8.** *Sankey diagram* ❌
- **9.** *Sun ray diagram* ❌
- **10.** *Tree diagram*  ❌
+ - *Arc diagram* ❌
+ - *Flow diagram* ❌
+ - *Boxes and whiskers diagram* ❌
+ - *Gontt diagram* ❌
+ - *Venn diagram* ❌
+ - *Network diagram* ❌
+ - *Ribbonless chord diagram* ❌
+ - *Sankey diagram* ❌
+ - *Sun ray diagram* ❌
+ - *Tree diagram*  ❌
 ##
 
 ### Types of graphs
 
-**1.** *Cycles* ❌
-**2.** *Processes* ❌
-**3.** *Pyramids* ❌
-**4.** *Images* ❌
-**5.** *Relations* ❌
-**6.** *Lists* ❌
+- *Cycles* ❌
+- *Processes* ❌
+- *Pyramids* ❌
+- *Images* ❌
+- *Relations* ❌
+- *Lists* ❌
 
 ##
 This project is in *development* by **Klout** with much ♥
