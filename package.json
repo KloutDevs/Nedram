@@ -1,0 +1,18 @@
+{
+  "name": "nedram",
+  "version": "1.0.0",
+  "description": "Nedram is a completely free and open source desktop program with web programming languages, developed with the "Electron" framework. This one is based on diagrams and graphs.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "keywords": [],
+  "author": "Nahuel Schmidt",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^11.1.0",
+    "electron-reload": "^1.5.0",
+    "winston": "^3.3.3",
+    "chalk": "^4.1.0"
+  }
+}
