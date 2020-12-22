@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const url = require('url');
 const path = require('path');
 
-async function createWindow(filePath, {width, height, minWidth, minHeight, maxWidth, maxHeight, center, closable, title, icon, parent}, appOptions){
+async function createWindow(filePath, {width, height, minWidth, minHeight, maxWidth, maxHeight, center, closable, title, icon, parent, show}, appOptions){
 
     try{
         let debug = appOptions.debugMode
@@ -13,18 +13,19 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
         }
 
         const window = new BrowserWindow({
-            width: width,
-            height: height,
-            minWidth: minWidth,
-            minHeight: minHeight,
-            maxWidth: maxWidth,
-            maxHeight: maxHeight,
-            center: center,
-            closable: closable,
-            title: title,
-            icon: icon,
-            parent: parent,
-            show: false,
+            width: (width) ? width : 800,
+            height: (height) ? height : 800,
+            minWidth: (minWidth) ? minWidth : 0,
+            minHeight: (minHeight) ? minHeight : 0,
+            maxWidth: (maxWidth) ? maxWidth : 1360,
+            maxHeight: (maxHeight) ? maxHeight : 768,
+            center: (center) ? center : true,
+            closable: (closable) ? closable : true,
+            title: (title) ? title : "Nedram",
+            icon: (icon) ? icon : undefined,
+            parent: (parent) ? parent : null,
+            contextIsolation: false,
+            show: (show) ? show : false,
             webPreferences: {
                 nodeIntegration: true
             }
@@ -44,9 +45,11 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
             logger('debug', `Trying to show "${chalk.blue.bold('window')}"`);
         }
 
-        window.once('ready-to-show', () => {
-            window.show();
-        });
+        if(show){
+            window.once('ready-to-show', () => {
+                window.show();
+            });
+        }
 
         if(debug == true){
             logger('debug', `A new BrowserWindow was successfully created. Path: ${chalk.green.bold(filePath)}`);
