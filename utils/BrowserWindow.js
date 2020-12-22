@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const url = require('url');
 const path = require('path');
 
-async function createWindow(filePath, {width, height, minWidth, minHeight, maxWidth, maxHeight, center, closable, title, icon, parent, show}, appOptions){
+async function createWindow(filePath, {width, height, minWidth, minHeight, maxWidth, maxHeight, center, closable, title, icon, parent, show, frame}, appOptions){
 
     try{
         let debug = appOptions.debugMode
@@ -25,6 +25,7 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
             icon: (icon) ? icon : undefined,
             parent: (parent) ? parent : null,
             contextIsolation: false,
+            frame: (frame) ? frame : true,
             show: (show) ? show : false,
             webPreferences: {
                 nodeIntegration: true
@@ -36,7 +37,7 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
         }
 
         window.loadURL(url.format({
-            pathname: path.join(__dirname, filePath),
+            pathname: filePath,
             protocol: 'file',
             slashes: true,
         }));
@@ -45,10 +46,12 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
             logger('debug', `Trying to show "${chalk.blue.bold('window')}"`);
         }
 
-        if(show){
+        if(!show || show == false){
             window.once('ready-to-show', () => {
                 window.show();
             });
+        }else{
+            window.show();
         }
 
         if(debug == true){
