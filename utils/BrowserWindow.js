@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const url = require('url');
 const path = require('path');
 
-async function createWindow(filePath, {width, height, minWidth, minHeight, maxWidth, maxHeight, center, closable, title, icon, parent, show, frame}, appOptions){
+async function createWindow(filePath, {width, height, minWidth, minHeight, maxWidth, maxHeight, backgroundColor, center, closable, title, icon, parent, show, frame}, appOptions){
 
     try{
         let debug = appOptions.debugMode
@@ -19,6 +19,7 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
             minHeight: (minHeight) ? minHeight : 0,
             maxWidth: (maxWidth) ? maxWidth : 1360,
             maxHeight: (maxHeight) ? maxHeight : 768,
+            backgroundColor: (backgroundColor) ? backgroundColor : "#fff",
             center: (center) ? center : true,
             closable: (closable) ? closable : true,
             title: (title) ? title : "Nedram",
