@@ -1,0 +1,41 @@
+* {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+:root{
+    --bgTitlebar: #414141;
+    --bgNavbar: #353535;
+    --bgFilesNavbar: #1f1f1f;
+    --bgMain: #272727;
+}
+
+.main {
+    display: inline-block;
+    position: absolute;
+    margin-top: 35px;
+    min-height: calc(100% - 63px);
+    max-height: calc(100% - 63px);
+    min-width: 96%;
+    max-width: 96%;
+    overflow: auto;
+    background-color: var(--bgMain);
+}
+
+.main::-webkit-scrollbar {
+    width: 10px;
+}
+
+.main::-webkit-scrollbar-track {
+    background: #888;
+}
+
+.main::-webkit-scrollbar-thumb {
+    background: #13ad53c5;
+}
+
+.main::-webkit-scrollbar-thumb:hover {
+    background: #0a833cc5;
+}
+.main-content{
+    padding: 50px;
+}
