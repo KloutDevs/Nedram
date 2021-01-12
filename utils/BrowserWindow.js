@@ -4,14 +4,16 @@ const chalk = require('chalk');
 const url = require('url');
 const path = require('path');
 
-async function createWindow(filePath, {width, height, minWidth, minHeight, maxWidth, maxHeight, backgroundColor, center, closable, title, icon, parent, show, frame}, appOptions){
+async function createWindow(filePath, {width, height, minWidth, minHeight, maxWidth, maxHeight, fullscreen, fullscreenable, paintWhenInitiallyHidden, resizable, transparent, backgroundColor, center, closable, title, icon, parent, show, modal, frame, nodeIntegration}, appOptions){
 
     try{
-        let debug = appOptions.debugMode
+
+        let debug = appOptions.debugMode;
+        if(debug == undefined) debug = require('../appOptions.json').debugMode;
+
         if(debug == true){
             logger('debug', `Trying to create a new ${chalk.red.bold('BrowserWindow')}.`);
         }
-
         const window = new BrowserWindow({
             width: (width) ? width : 800,
             height: (height) ? height : 800,
@@ -19,6 +21,11 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
             minHeight: (minHeight) ? minHeight : 0,
             maxWidth: (maxWidth) ? maxWidth : 1360,
             maxHeight: (maxHeight) ? maxHeight : 768,
+            fullscreen: (fullscreen) ? fullscreen : false,
+            fullscreenable: (fullscreenable) ? fullscreenable : true,
+            paintWhenInitiallyHidden: (paintWhenInitiallyHidden) ? paintWhenInitiallyHidden : false,
+            resizable: (resizable) ? resizable : false,
+            transparent: (transparent) ? transparent : false,
             backgroundColor: (backgroundColor) ? backgroundColor : "#fff",
             center: (center) ? center : true,
             closable: (closable) ? closable : true,
@@ -26,33 +33,34 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
             icon: (icon) ? icon : undefined,
             parent: (parent) ? parent : null,
             contextIsolation: false,
-            frame: (frame) ? frame : true,
+            modal: (modal) ? modal : false,
+            frame: (frame) ? frame : false,
             show: (show) ? show : false,
             webPreferences: {
-                nodeIntegration: true
+                nodeIntegration: true,//(nodeIntegration) ? nodeIntegration : true,
             }
         });
     
-        if(debug == true){
-            logger('debug', `Trying to load a file type url. Path: ${chalk.yellow.bold(filePath)}`);
+        if(filePath !== false){
+            if(debug == true){
+                logger('debug', `Trying to load a file type url. Path: ${chalk.yellow.bold(filePath)}`);
+            }
+            window.loadURL(url.format({
+                pathname: filePath,
+                protocol: 'file',
+                slashes: true,
+            }));
         }
 
-        window.loadURL(url.format({
-            pathname: filePath,
-            protocol: 'file',
-            slashes: true,
-        }));
+        //window
 
-        if(debug == true){
-            logger('debug', `Trying to show "${chalk.blue.bold('window')}"`);
-        }
-
-        if(!show || show == false){
+        if(show && show == true){
+            if(debug == true){
+                logger('debug', `Trying to show "${chalk.blue.bold('window')}"`);
+            }
             window.once('ready-to-show', () => {
                 window.show();
             });
-        }else{
-            window.show();
         }
 
         if(debug == true){
@@ -62,6 +70,7 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
 
     }catch(e){
         logger('error', `An error occurred trying to create a new BrowserWindow. ${chalk.red.bold(e)}`);
+        console.error(e);
     }
 
 }
