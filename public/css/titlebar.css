@@ -1,0 +1,187 @@
+:root {
+    --background-color: transparent;
+    --border-colors: #222222;
+    --navbar-color: #1b1b1b;
+  }
+
+                /* BODY STYLES*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    user-select: none;
+    color: #FFF;
+}
+/*
+body::-webkit-scrollbar {
+    display: none;
+}*/
+
+
+                /* TITLEBAR STYLES*/
+
+.title-bar {
+    margin: 0;
+    padding: 0;
+    background-color: var(--border-colors);
+}
+
+.bar {
+    top: 0px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.title {
+    float: left;
+    margin: 3px 0 0 5px;
+    color: #6d6d6d;
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+.title img {
+	padding-top: 4px;
+}
+
+.right-btns {
+    float: right;
+    color: #6d6d6d;
+}
+
+.titlebar-btn {
+    float: left;
+    width: 20px;
+    height: 10px;
+    margin: -2px 0 0 0;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 18px;
+    color: #6d6d6d;
+    transition: all 0.2s;
+}
+
+.titlebar-btn:hover {
+    background: #ffffff1a;
+    color: #26c94a;
+}
+
+                /* NAVBAR STYLES*/
+
+.navbar{
+    display: inline-block;
+    top: 28px;
+    background-color: var(--navbar-color);
+    min-width: 4%;
+    min-height: calc(100% - 28px);
+    max-height: calc(100% - 28px);
+    max-width: 4%;
+}
+
+.navbar-btn i{
+    display: block;
+    color: #6d6d6d;
+    font-size: 28px !important;
+    width: 54px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.navbar-btn i:hover{
+    color: white;
+}
+
+.bottom-buttons{
+    position: absolute;
+    bottom: 0px;
+}
+
+
+                /* FILES NAVBAR STYLES*/
+
+.filesNavbar{
+    display: inline-block;
+    position: absolute;
+    background-color: var(--bgFilesNavbar);
+    min-width: calc(100% - 4%);
+    max-width: calc(100% - 4%);
+    min-height: 35px;
+    max-height: 35px;
+    overflow: auto;
+}
+
+                /* OTHERS STYLES */
+
+.drag {
+    -webkit-app-region:drag;
+}
+
+.no-drag {
+    -webkit-app-region: no-drag
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+.shortcut-or {
+    color: #AAA;
+}
+
+                /* MATERIAL ICONS IMPORT */
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Material.woff2) format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+.material-icons.tiny {
+	font-size: 15px;
+	padding-bottom: 15px;
+}
+
+                /* MEDIA QUERIES */
+
+@media only screen and (max-width: 800px) {
+    .navbar {
+        min-width: 6%;
+        max-width: 6%;
+    }
+
+    .filesNavbar{
+        min-width: 94%;
+        max-width: 94%;
+    }
+    
+    .main {
+        min-width: 94%;
+        max-width: 94%;
+    }
+
+}
