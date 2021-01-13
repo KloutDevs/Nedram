@@ -15,34 +15,21 @@
 
     <div class="main">
         <div class="main-content">
-            <h1>PROBANDO</h1>
-        
-            <h1>TEST</h1>
-            
-            <h1>TEST</h1>
-        
-            <h1>TEST</h1>
-            <h1>TEST</h1>
-        
-            <h1>TEST</h1>
-            
-            <h1>TEST</h1>
-        
-            <h1>TEST</h1>
-            <h1>TEST</h1>
-        
-            <h1>TEST</h1>
-            
-            <h1>TEST</h1>
-        
-            <h1>TEST</h1>
+
         </div>
     </div>
 
     <script>
         const { ipcRenderer, remote } = require('electron');
+        const ejs = require('ejs');
+        const path = require('path');
+        const os = require('os');
+        const appOptions = require('../appOptions.json');
+        const userOptions = require('../userOptions.json');
     </script>
-    <script src="../public/js/titlebar.js"></script>
+    <script src="../public/js/filesManager.js"></script>
     <script src="../public/js/index.js"></script>
+    <script src="../public/js/hScrollbar.js"></script>
+    <script src="../public/js/titlebar.js"></script>
 </body>
 </html>
