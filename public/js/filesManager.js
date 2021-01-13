@@ -53,8 +53,9 @@ function addToFileNavbar(file){
 
 async function renderFile(file, childNodeElement){
     if(file.filePath == "allFilesClosed" && childNodeElement == undefined){
-        let html = ejs.render('<%- include(path) &>', {path: path.join(__dirname, "noFiles.ejs")});
+        let html = ejs.render('<%- include(path) %>', {path: path.join(__dirname, "noFiles.ejs")});
         mainC.innerHTML = html;
+        ipcRenderer.invoke('discordRPC', {type: 'Editing', fileFormatIcon: 'nedramicon', imageText: 'https://github.com/KloutDevs/Nedram/'});
     }else if(file.filePath == undefined){
         let html = ejs.render('<%- include(path) %>', {path: path.join(__dirname, "welcomeFile.ejs")});
         mainC.innerHTML = html;
@@ -81,7 +82,7 @@ async function renderFile(file, childNodeElement){
             imageText = 'Diagram File';
             smallImage = 'nedramicon';
         }
-        ipcRenderer.invoke('discordRPC', {fileFormatIcon: fileFormatIcon, fileFormat: fileFormat, details: details, imageText: imageText, smallImage: smallImage, file: file});
+        ipcRenderer.invoke('discordRPC', {type: 'Editing', fileFormatIcon: fileFormatIcon, fileFormat: fileFormat, details: details, imageText: imageText, smallImage: smallImage, file: file});
     }else{
         let html = ejs.render('<%- include(path) %>', {path: path.join(__dirname, file.filePath)});
         mainC.innerHTML = html;
@@ -108,7 +109,7 @@ async function renderFile(file, childNodeElement){
             imageText = 'Diagram File';
             smallImage = 'nedramicon';
         }
-        ipcRenderer.invoke('discordRPC', {fileFormatIcon: fileFormatIcon, fileFormat: fileFormat, details: details, imageText: imageText, smallImage: smallImage, file: file});
+        ipcRenderer.invoke('discordRPC', {type: 'Editing', fileFormatIcon: fileFormatIcon, fileFormat: fileFormat, details: details, imageText: imageText, smallImage: smallImage, file: file});
     }
 }
 
@@ -121,7 +122,10 @@ function closeFile(childNodeElement){
             renderFile(file, childNodeElement - 1);
             return true;
         }else{
-            renderFile("allFilesClosed");
+            let file = {
+                filePath: "allFilesClosed"
+            }
+            renderFile(file, undefined);
             return true;
         }
     }catch(e){
