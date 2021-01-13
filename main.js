@@ -44,7 +44,6 @@ app.on('ready', async () => {
             }));
 
             mainWindow.show();
-            let RPC = await discordRPC.connect;
                 
                         // IPC EVENTS
 
@@ -81,7 +80,7 @@ app.on('ready', async () => {
                 }
             });
 
-            ipcMain.handle('getMainWindowData', async (event, key) => {
+            ipcMain.handle('getMainWindow', async (event, key) => {
                 let value;
                 if(key == 'isFocused'){
                     if(mainWindow.isFocused() == true){
@@ -229,10 +228,28 @@ app.on('ready', async () => {
                 return true;
             });
             
+            let RPC, RPC_;
+            await discordRPC.getClient.then(async(Client) => {
+                if(Client == 'Could not connect'){
+                    RPC = Client;
+                    RPC_ = true;
+                }else if(Client == 'connection closed'){
+                    RPC = Client;
+                    RPC_ = true;
+                }else if(Client == 'rpc_connection_timeout'){
+                    RPC = Client;
+                    RPC_ = true; // IF RPC Have a error
+                }else{
+                    RPC = Client;
+                    RPC_ = false; // If RPC haven't a error
+                }
+            });
+
             ipcMain.handle('discordRPC', async (event, activity) => {
+                if(RPC_ == true) return;
                 let timelapse = new Date().getTime();
                 RPC.setActivity({
-                    details: `${activity.details} ${activity.file.fileName}.${activity.fileFormat}`,
+                    details: (activity.type == 'Editing') ? `${activity.details} ${activity.file.fileName}.${activity.fileFormat}` : 'Idle',
                     state: `Beta ${appOptions.appVersion}`,
                     startTimestamp: timelapse,
                     largeImageKey: activity.fileFormatIcon,
