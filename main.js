@@ -2,14 +2,11 @@ const { app, ipcMain } = require('electron');
 const e_js = require('electron-ejs');
 const path = require('path');
 const url = require('url');
-const os = require('os');
 const { createWindow } = require('./utils/BrowserWindow.js');
 const { createView } = require('./utils/BrowserView.js');
+const discordRPC = require('./utils/discordRPC.js');
 const { logger } = require('./utils/logger.js');
 const appOptions = require('./appOptions.json');
-const userOptions = require('./userOptions.json');
-const DiscordRPC = require('./utils/discordRPC.js');
-const desktopUser = os.userInfo();
 const ejs = new e_js({"author": "KloutDevs"}, {debug: false})
 
 if(app.isPackaged == false){
@@ -28,7 +25,7 @@ app.on('ready', async () => {
             height: 600,
             minHeight: 600,
             minWidth: 800,
-            show: true,
+            show: false,
             nodeIntegration: true
         },
         mainView: {
@@ -45,19 +42,11 @@ app.on('ready', async () => {
                 protocol: 'file',
                 slashes: true,
             }));
+
             mainWindow.show();
-
-            let appData = new Map();
-            appData.set("app", app);
-            appData.set("createWindow", createWindow);
-            appData.set("createView", createView);
-            appData.set("logger", logger);
-            appData.set("appOptions", appOptions);
-            appData.set("userOptions", userOptions);
-            appData.set("dRPC", DiscordRPC);
-            appData.set("desktopUser", desktopUser);
-
-                // IPC EVENTS
+            let RPC = await discordRPC.connect;
+                
+                        // IPC EVENTS
 
             ipcMain.handle('app-minimize', async () => {
                 if(mainWindow.isMinimized() == false){
@@ -90,14 +79,6 @@ app.on('ready', async () => {
                 }else{
                     return false;
                 }
-            });
-
-            ipcMain.handle('setAppData', async (event, key, value) => {
-                appData.set(key, value);
-            });
-
-            ipcMain.handle('getAppData', async (event, key) => {
-                appData.get(key);
             });
 
             ipcMain.handle('getMainWindowData', async (event, key) => {
@@ -238,7 +219,29 @@ app.on('ready', async () => {
                 return value;
             });
 
-            DiscordRPC.connect();
+            ipcMain.handle('titleUpdate', async (event, newTitle) => {
+                mainWindow.setTitle(newTitle+' - Nedram');
+                return newTitle+' - Nedram';
+            });
+
+            ipcMain.handle('logger', async (event, level, arg) => {
+                logger(level, arg)
+                return true;
+            });
+            
+            ipcMain.handle('discordRPC', async (event, activity) => {
+                let timelapse = new Date().getTime();
+                RPC.setActivity({
+                    details: `${activity.details} ${activity.file.fileName}.${activity.fileFormat}`,
+                    state: `Beta ${appOptions.appVersion}`,
+                    startTimestamp: timelapse,
+                    largeImageKey: activity.fileFormatIcon,
+                    largeImageText: activity.imageText,
+                    smallImageKey: (activity.smallImage != undefined) ? activity.smallImage : undefined,
+                    smallImageText: (activity.smallImage != undefined) ? 'https://github.com/KloutDevs/Nedram/' : undefined,
+                    instance: false,
+                });
+            });
 
         });
     });
