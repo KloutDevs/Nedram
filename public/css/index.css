@@ -2,13 +2,6 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 
-:root{
-    --bgTitlebar: #414141;
-    --bgNavbar: #353535;
-    --bgFilesNavbar: #1f1f1f;
-    --bgMain: #272727;
-}
-
 .main {
     display: inline-block;
     position: absolute;
