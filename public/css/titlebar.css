@@ -1,8 +1,12 @@
-:root {
+:root{
+    --bgTitlebar: #3b3b3b;
+    --bgNavbar: #313131;
+    --bgFilesNavbar: #2e2e2e;
+    --bgFiles: #272727;
+    --bgFileSelected: #1f1f1f;
+    --bgMain: #1f1f1f;
     --background-color: transparent;
-    --border-colors: #222222;
-    --navbar-color: #1b1b1b;
-  }
+}
 
                 /* BODY STYLES*/
 
@@ -13,10 +17,10 @@ html, body {
     user-select: none;
     color: #FFF;
 }
-/*
+
 body::-webkit-scrollbar {
     display: none;
-}*/
+}
 
 
                 /* TITLEBAR STYLES*/
@@ -24,7 +28,7 @@ body::-webkit-scrollbar {
 .title-bar {
     margin: 0;
     padding: 0;
-    background-color: var(--border-colors);
+    background-color: var(--bgTitlebar);
 }
 
 .bar {
@@ -38,7 +42,7 @@ body::-webkit-scrollbar {
 .title {
     float: left;
     margin: 3px 0 0 5px;
-    color: #6d6d6d;
+    color: #b3b3b3;
     font-family: sans-serif;
     font-size: 18px;
 }
@@ -49,7 +53,7 @@ body::-webkit-scrollbar {
 
 .right-btns {
     float: right;
-    color: #6d6d6d;
+    color: #b3b3b3;
 }
 
 .titlebar-btn {
@@ -60,7 +64,7 @@ body::-webkit-scrollbar {
     padding: 10px 10px;
     text-align: center;
     font-size: 18px;
-    color: #6d6d6d;
+    color: #b3b3b3;
     transition: all 0.2s;
 }
 
@@ -74,7 +78,7 @@ body::-webkit-scrollbar {
 .navbar{
     display: inline-block;
     top: 28px;
-    background-color: var(--navbar-color);
+    background-color: var(--bgNavbar);
     min-width: 4%;
     min-height: calc(100% - 28px);
     max-height: calc(100% - 28px);
@@ -107,13 +111,85 @@ body::-webkit-scrollbar {
 .filesNavbar{
     display: inline-block;
     position: absolute;
+    margin: 0;
+    padding: 0;
     background-color: var(--bgFilesNavbar);
     min-width: calc(100% - 4%);
     max-width: calc(100% - 4%);
     min-height: 35px;
     max-height: 35px;
-    overflow: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    list-style-type: none;
 }
+
+.filesNavbar:hover{
+    overflow-x: auto;
+}
+
+.filesNavbar .file{
+    display: inline-flex;
+    position: relative;
+    background-color: var(--bgFiles);
+    color: #8a8a8a;
+    margin-right: 1px;
+    min-width: 160px;
+    max-width: 200px;
+    min-height: 35px;
+    max-height: 35px;
+    width: 160px;
+    overflow: hidden;
+}
+
+.filesNavbar .file > img {
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+}
+
+.filesNavbar .file > span {
+    min-width: 90px;
+    max-width: 90px;
+    max-height: 15px;
+    font-size: 13px;
+    font-family: Arial;
+    margin: auto;
+}
+
+.filesNavbar .file > i {
+    display: none;
+}
+
+.filesNavbar .file:hover >i {
+    display: inline-block;
+    position: absolute;
+    right: 7px;
+    top: 10px;
+}
+
+.filesNavbar .fileSelected {
+    background-color: var(--bgMain);
+}
+
+.filesNavbar::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+}
+
+.filesNavbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.filesNavbar::-webkit-scrollbar-thumb {
+    background: #13ad534f;
+}
+
+.filesNavbar::-webkit-scrollbar-thumb:hover {
+    background: #0a833c4f;
+}
+
 
                 /* OTHERS STYLES */
 
