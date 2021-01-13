@@ -1,0 +1,23 @@
+.image{
+    margin-top: 3%;
+    text-align:center;
+    display: inherit;
+    font-size: 264px;
+    color: #1263dd;
+}
+
+.noFileTitle{
+    text-align: center;
+}
+
+.noFileText{
+    text-align: center;
+}
+
+.shortcut{
+    background-color: #1263dd;
+    font-size: 12px;
+    padding: 3px;
+    margin: 5px;
+    border-radius: 16px;
+}
