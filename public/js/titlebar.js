@@ -8,6 +8,10 @@ ipcRenderer.invoke('getMainWindowData', 'isMaximized').then(async (boolean) => {
     }
 });
 
+document.querySelector('#filesNavbarList').addEventListener("mousewheel", () => {
+    hScroll('filesNavbarList');
+})
+
 document.querySelector('#btn-minimize').addEventListener('click', () => {
     ipcRenderer.invoke('app-minimize');
 });
