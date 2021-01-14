@@ -1,6 +1,7 @@
 :root{
     --bgTitlebar: #3b3b3b;
     --bgNavbar: #313131;
+    --bgNavbarShow: #242424;
     --bgFilesNavbar: #2e2e2e;
     --bgFiles: #272727;
     --bgFileSelected: #1f1f1f;
@@ -80,12 +81,17 @@ body::-webkit-scrollbar {
 
 .navbar{
     display: inline-block;
-    top: 28px;
+    position: relative;
     background-color: var(--bgNavbar);
     min-width: 4%;
     min-height: calc(100% - 28px);
     max-height: calc(100% - 28px);
     max-width: 4%;
+    z-index: 2;
+}
+
+.navbar-btn {
+    transition: all 0.1s;
 }
 
 .navbar-btn i{
@@ -96,16 +102,186 @@ body::-webkit-scrollbar {
     padding-top: 15px;
     padding-bottom: 15px;
     text-align: center;
-    transition: all 0.2s;
 }
 
 .navbar-btn i:hover{
     color: white;
 }
 
+.selectedNavbar{
+    border-left: 3px solid white;
+}
+
+.selectedNavbar > i{
+    color: white;
+}
+
 .bottom-buttons{
     position: absolute;
     bottom: 0px;
+}
+
+.navbar-show{
+    display: inline-block;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bgNavbarShow);
+    list-style-type: none;
+    min-width: 350px;
+    max-width: 350px;
+    min-height: calc(100% - 28px);
+    max-height: calc(100% - 28px);
+    z-index: 1;
+    margin-left: -360px;
+    overflow: hidden;
+    transition: all 0.5s;
+}
+
+.navbar-show hr {
+    border: 0.1px solid rgba(49, 49, 49, 0.582);
+}
+
+.navbar-show .navbar-show-i{
+    color: #b3b3b3;
+    cursor: pointer;
+    margin-left: 30px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.navbar-show > .sections-open-buttons{
+    font-family: 'PT Mono', monospace;
+    font-weight: 400;
+    font-size: 13px;
+    cursor: pointer;
+    color: #b3b3b3;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.navbar-section-explorer::-webkit-scrollbar {
+    width: 3px;
+    height: 1px;
+}
+
+.navbar-section-explorer::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.navbar-section-explorer::-webkit-scrollbar-thumb {
+    background: #13ad534f;
+}
+
+.navbar-section-explorer::-webkit-scrollbar-thumb:hover {
+    background: #0a833c4f;
+}
+
+
+.navbar-section-explorer{
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    min-height: 0px;
+    min-width: 320px;
+    max-height: 0px;
+    max-width: 320px;
+    background-color: #292929;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    overflow: auto;
+    transition: all 0.5s;
+}
+
+.navbar-section-explorer > table{
+    display: inline-block;
+    position: relative;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.navbar-section-explorer table tr {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.navbar-section-explorer table tr td {
+    margin: 0;
+    margin-top: 12px;
+    margin-right: 6px;
+    margin-left: 6px;
+    min-width: calc(153px - 15px);
+    flex-grow: 1;
+    min-height: 40px;
+    max-height: 4px;
+    background-color: var(--bgNavbarShow);
+    border-radius: 16px;
+    text-align: center
+}
+
+.navbar-section-explorer table tr td .explorer-text {
+    display: inherit;
+    color: #d6d6d6;
+    margin-top: 5px;
+}
+
+.navbar-section-explorer table tr td .explorer-shortcut {
+    display: inherit;
+    margin-top: 2px;
+    font-size: 12px;
+    font-family: 'Ubuntu Mono', monospace;
+    color: #9c9c9c;
+}
+
+.navbar-section-openFileList{
+    margin-top: 10px;
+}
+
+.navbar-section-openFileList i{
+    margin-left: 30px;
+    color: rgb(37, 206, 122);
+    opacity: 0%;
+    transition: all 0.5s;
+}
+
+.navbar-section-openFileList span{
+    opacity: 0%;
+    transition: all 0.5s;
+}
+
+.navbar-section-workspaces{
+    margin-top: 10px;
+}
+
+.navbar-section-workspaces i{
+    margin-left: 30px;
+    color: rgb(37, 206, 122);
+    opacity: 0%;
+    transition: all 0.5s;
+}
+
+.navbar-section-workspaces span{
+    opacity: 0%;
+    transition: all 0.5s;
+}
+
+
+.showWithMargin {
+    margin-left: 0px !important;
+}
+
+.showWithHeight {
+    min-height: 300px !important;
+    max-height: 300px !important;
+}
+
+.showWithOpacity{
+    opacity: 100% !important;
+}
+
+.btn-styles-show{
+    display: none;
 }
 
 
