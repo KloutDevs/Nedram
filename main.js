@@ -26,6 +26,7 @@ app.on('ready', async () => {
             minHeight: 600,
             minWidth: 800,
             show: false,
+            icon: path.join(__dirname, 'public/img/NedramIcon.png'),
             nodeIntegration: true
         },
         mainView: {
