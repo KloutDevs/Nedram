@@ -48,7 +48,10 @@ body::-webkit-scrollbar {
 }
 
 .title img {
-	padding-top: 4px;
+    padding-top: 4px;
+    width: 16px;
+    float: left;
+    margin-right: 7px
 }
 
 .right-btns {
