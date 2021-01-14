@@ -40,6 +40,9 @@ function addToFileNavbar(file){
         <span>${file.fileName}.${fileFormat}</span>\n
         <i class="material-icons tiny btn-close-file"">close</i>`
         fileInNavbar.innerHTML = htmlFile;
+        fileInNavbar.addEventListener('click', () => {
+            renderFile(file, document.querySelector('.filesNavbar').childNodes.length - 1);
+        });
         fileInNavbar.childNodes[4].addEventListener('click', () => {
             closeFile(document.querySelector('.filesNavbar').childNodes.length - 1);
         });
