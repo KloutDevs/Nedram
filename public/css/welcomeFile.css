@@ -1,0 +1,77 @@
+    /* RECENTS FILES SECTION*/
+
+.recentFiles{
+    display: inline-block;
+    width: 40%;
+    max-width: 40%;
+    text-align: center;
+}
+
+.recentFiles-title{
+    margin: 0;
+    margin-top: 15px;
+    font-size: 32px;
+    color: rgb(125, 194, 125);
+}
+
+.recentFiles-list{
+    list-style-type: none;
+}
+
+.recentFile-file{
+    margin-right: 30px;
+}
+
+.recentFile-link{
+    cursor: pointer;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 14px;
+    color: #13ad53c5;
+    text-decoration: underline;
+}
+
+.recentFile-link:hover{
+    color: #0a833cc5;
+}
+
+    /* APP INFO SECTION */
+
+.app-info{
+    float: right;
+    display: inline-block;
+    width: 30%;
+    max-width: 30%;
+    text-align: center;
+}
+
+.app-info-img{
+    width: 50%;
+    height: auto;
+}
+
+@supports(object-fit: cover){
+    .app-info img{
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+}
+    /* BUTTONS-FOR-APP SECTION */
+
+.buttons-app-list{
+    list-style-type: none;
+}
+
+.buttons-app-li > i{
+    font-size: 8px;
+    color: #146e3a;
+}
+
+.buttons-app-link{
+    text-decoration: underline;
+    color: #20ca67;
+}
+
+.buttons-app-link:hover{
+    color: #128040;
+}
