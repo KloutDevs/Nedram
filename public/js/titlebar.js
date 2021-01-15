@@ -15,6 +15,9 @@ document.querySelector('#filesNavbarList').addEventListener("mousewheel", () => 
 document.querySelector('#btn-files').addEventListener('click', () => {
     document.querySelector('.btn-files-show').classList.toggle('showWithMargin');
     document.querySelector('#btn-files').classList.toggle('selectedNavbar');
+    document.querySelector('.filesNavbar').classList.toggle('moveTheMargin');
+    document.querySelector('.main').classList.toggle('moveTheMargin');
+    document.querySelector('.main').classList.toggle('adjustWidth');
 });
 
 document.querySelector('.section-icon-explorer').addEventListener('click', () => {
