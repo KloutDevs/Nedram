@@ -2,6 +2,7 @@ const { app, ipcMain } = require('electron');
 const e_js = require('electron-ejs');
 const path = require('path');
 const url = require('url');
+const fs = require('fs');
 const { createWindow } = require('./utils/BrowserWindow.js');
 const { createView } = require('./utils/BrowserView.js');
 const discordRPC = require('./utils/discordRPC.js');
@@ -227,6 +228,12 @@ app.on('ready', async () => {
             ipcMain.handle('logger', async (event, level, arg) => {
                 logger(level, arg)
                 return true;
+            });
+
+            ipcMain.handle('recentDocumentsUpdate', async (event, entry) => {
+                appOptions.recentFiles.push(entry);
+                await fs.writeFileSync('./appOptions.json', JSON.stringify(appOptions, null, 2));
+                appOptions = require('./appOptions.json');
             });
             
             let RPC, RPC_;
