@@ -1,10 +1,12 @@
 let fileManagerData = {
     totalFiles: 1, // fileNavbar already have a childNode "#text"
+    recentFiles: [],
     files: [],
     fileSelected: undefined,
 }
 
 fileManagerData.totalFiles = appOptions.openFiles.length;
+fileManagerData.recentFiles = appOptions.recentFiles;
 fileManagerData.files = appOptions.openFiles;
 
 if(fileManagerData.totalFiles < 1){
@@ -40,8 +42,12 @@ function addToFileNavbar(file){
         <span>${file.fileName}.${fileFormat}</span>\n
         <i class="material-icons tiny btn-close-file"">close</i>`
         fileInNavbar.innerHTML = htmlFile;
-        fileInNavbar.addEventListener('click', () => {
-            renderFile(file, document.querySelector('.filesNavbar').childNodes.length - 1);
+        fileInNavbar.addEventListener('click', (event) => {
+            if(event.srcElement.childNodes.length <= 1){
+                return;
+            }else{
+                renderFile(file, document.querySelector('.filesNavbar').childNodes.length - 1);
+            }
         });
         fileInNavbar.childNodes[4].addEventListener('click', () => {
             closeFile(document.querySelector('.filesNavbar').childNodes.length - 1);
@@ -58,7 +64,7 @@ async function renderFile(file, childNodeElement){
     if(file.filePath == "allFilesClosed" && childNodeElement == undefined){
         let html = ejs.render('<%- include(path) %>', {path: path.join(__dirname, "noFiles.ejs")});
         mainC.innerHTML = html;
-        ipcRenderer.invoke('discordRPC', {type: 'Editing', fileFormatIcon: 'nedramicon', imageText: 'https://github.com/KloutDevs/Nedram/'});
+        ipcRenderer.invoke('discordRPC', {type: 'Idle', fileFormatIcon: 'nedramicon', imageText: 'https://github.com/KloutDevs/Nedram/'});
     }else if(file.filePath == undefined){
         let html = ejs.render('<%- include(path) %>', {path: path.join(__dirname, "welcomeFile.ejs")});
         mainC.innerHTML = html;
