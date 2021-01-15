@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf8">
+    <link rel="stylesheet" href="../public/css/welcomeFile.css">
+    <link rel="stylesheet" href="../public/css/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@0;1&family=Staatliches&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/fcab31dd80.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="recentFiles">
+        <h5 class="recentFiles-title">Recent Documents</h5>
+        <ul class="recentFiles-list">
+            <% if(fileManagerData.recentFiles.length >= 1){ %>
+                <% for(var i=0;i < fileManagerData.recentFiles.length;i++){ %>
+                    <li class="recentFile-file">
+                        <a class="recentFile-link"><%= fileManagerData.recentFiles[i] %></a>
+                    </li>
+                    <br>
+                <% } %>
+            <% }else{ %>
+                <li class="recentFile-file">
+                    There are no recent files.
+                </li>
+            <% } %>
+        </ul>
+    </div>
+    
+    <div class="app-info">
+        <img src="../public/img/NedramIcon-mini.png" class="app-info-img">
+        <p class="app-info-text">
+            Welcome to Nedram, a program with a comfortable and modern interface made for you to be able to easily create diagrams and graphics for your projects.
+        </p>
+        <p class="buttons-app-text">
+            You can start managing your diagrams and graphs
+            from the shortcuts below, or from the browser.
+        </p>
+        <ul class="buttons-app-list">
+            <li class="buttons-app-li">
+                <i class="fa fa-arrow-right"></i>   <a href="#" class="buttons-app-link">Open File</a>  <i class="fa fa-arrow-left"></i>
+            </li>
+            <li class="buttons-app-li">
+                <i class="fa fa-arrow-right"></i>   <a href="#" class="buttons-app-link">Open Folder</a>    <i class="fa fa-arrow-left"></i>
+            </li>
+            <li class="buttons-app-li">
+                <i class="fa fa-arrow-right"></i>   <a href="#" class="buttons-app-link">Open Workspace</a> <i class="fa fa-arrow-left"></i>
+            </li>
+            <li class="buttons-app-li">
+                <i class="fa fa-arrow-right"></i>   <a href="#" class="buttons-app-link">Open Recent</a>    <i class="fa fa-arrow-left"></i>
+            </li>
+            <li class="buttons-app-li">
+                <i class="fa fa-arrow-right"></i>   <a href="#" class="buttons-app-link">New File</a>   <i class="fa fa-arrow-left"></i>
+            </li>
+        </ul>
+    </div>
+
+    <script src="../public/js/welcomeFile.js"></script>
+</body>
+</html>
