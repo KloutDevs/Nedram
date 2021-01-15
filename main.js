@@ -244,7 +244,7 @@ app.on('ready', async () => {
                 }else if(Client == 'connection closed'){
                     RPC = Client;
                     RPC_ = true;
-                }else if(Client == 'rpc_connection_timeout'){
+                }else if(Client == 'RPC_CONNECTION_TIMEOUT'){
                     RPC = Client;
                     RPC_ = true; // IF RPC Have a error
                 }else{
