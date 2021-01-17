@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../public/css/newFile.css">
+        <link rel="stylesheet" href="../public/css/animate.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@0;1&family=Staatliches&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/fcab31dd80.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="error-alert">
+            <i class="fa fa-times"></i>
+            <span class="error-alert-text"></span>
+        </div>
+        <div class="main">
+            <h1 class="main-h1">Indicate the preferences for your new file.            </h1>
+            <hr class="separator">
+            <span class="FilePath-text">File Path</span> <input class="FilePath-input" type="text" name="FilePathInput" placeholder="The path where your file will be saved.">
+            <hr class="separator">
+            <button class="Diagram-button buttons-animation">Diagram</button>
+            <button class="Graphic-button buttons-animation">Graphic</button>
+            <hr class="separator">
+            <span class="FileTemplate-text">File Template</span>
+            <div class="FileTemplate-button"></div>
+            <hr class="separator">
+            <div class="templates-container">
+                <span class="template-text">Templates</span>
+
+            </div>
+            <br>
+            <button class="Go-button">Go</button>
+            <button class="Cancel-button">Cancel</button>
+        </div>
+        <script>
+            const { ipcRenderer } = require('electron');
+            const ejs = require('ejs');
+            const os = require('os');
+            const appOptions = require('../appOptions.json');
+            const userOptions = require('../userOptions.json');
+        </script>
+        <script src="../public/js/newFile.js"></script>
+    </body>
+</html>
