@@ -1,13 +1,16 @@
-const { app, ipcMain } = require('electron');
+const { app, ipcMain, BrowserWindow } = require('electron');
 const e_js = require('electron-ejs');
 const path = require('path');
 const url = require('url');
 const fs = require('fs');
+const os = require('os');
 const { createWindow } = require('./utils/BrowserWindow.js');
 const { createView } = require('./utils/BrowserView.js');
 const discordRPC = require('./utils/discordRPC.js');
 const { logger } = require('./utils/logger.js');
-const appOptions = require('./appOptions.json');
+var appOptions = require('./appOptions.json');
+var userOptions = require('./userOptions.json');
+const desktopUser = os.userInfo();
 const ejs = new e_js({"author": "KloutDevs"}, {debug: false})
 
 if(app.isPackaged == false){
@@ -16,6 +19,12 @@ if(app.isPackaged == false){
     });
 }
 
+if(userOptions.pathFiles == null && userOptions.dekstopUser == null){
+    userOptions.pathFiles = desktopUser.homedir;
+    userOptions.desktopUser = desktopUser;
+    fs.writeFileSync('./userOptions.json', JSON.stringify(userOptions, null, 2));
+    userOptions = require('./userOptions.json');
+}
     // APP READY
 
 app.on('ready', async () => {
@@ -236,24 +245,24 @@ app.on('ready', async () => {
                 appOptions = require('./appOptions.json');
             });
             
-            let RPC, RPC_;
-            await discordRPC.getClient.then(async(Client) => {
-                if(Client == 'Could not connect'){
-                    RPC = Client;
-                    RPC_ = true;
-                }else if(Client == 'connection closed'){
-                    RPC = Client;
-                    RPC_ = true;
-                }else if(Client == 'RPC_CONNECTION_TIMEOUT'){
-                    RPC = Client;
-                    RPC_ = true; // IF RPC Have a error
-                }else{
-                    RPC = Client;
-                    RPC_ = false; // If RPC haven't a error
-                }
-            });
-
             ipcMain.handle('discordRPC', async (event, activity) => {
+
+                let RPC, RPC_;
+                await discordRPC.getClient.then(async(Client) => {
+                    if(Client == 'Could not connect'){
+                        RPC = Client;
+                        RPC_ = true;
+                    }else if(Client == 'connection closed'){
+                        RPC = Client;
+                        RPC_ = true;
+                    }else if(Client == 'RPC_CONNECTION_TIMEOUT'){
+                        RPC = Client;
+                        RPC_ = true; // IF RPC Have a error
+                    }else{
+                        RPC = Client;
+                        RPC_ = false; // If RPC haven't a error
+                    }
+                });
                 if(RPC_ == true) return;
                 let timelapse = new Date().getTime();
                 RPC.setActivity({
@@ -266,6 +275,38 @@ app.on('ready', async () => {
                     smallImageText: (activity.smallImage != undefined) ? 'https://github.com/KloutDevs/Nedram/' : undefined,
                     instance: false,
                 });
+            });
+        
+            ipcMain.handle('newChildWindow', async (event, winPath, winOptions) => {
+                let result = await createWindow(winPath, winOptions, appOptions)
+                result.webContents.openDevTools();
+                if(createWindow == false){
+                    return false;
+                }else{
+                    result = result.id;
+                    return result;
+                }
+            });
+
+            ipcMain.handle('manageWindow', (event, winId, action, options) => {
+                let Window = BrowserWindow.fromId(winId);
+                switch(action){
+                    case 'close':
+                        Window.close();
+                        break;
+                    case 'destroy':
+                        Window.destroy();
+                        break;
+                    case 'show':
+                        Window.show();
+                        break;
+                    case 'blur':
+                        Window.blur();
+                        break;
+                    case 'focus':
+                        Window.focus();
+                        break;
+                }
             });
 
         });
