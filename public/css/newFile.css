@@ -1,0 +1,268 @@
+body{
+    margin: 0;
+    background-color: #272727;
+}
+
+body::webkit-scrollbar-button:horizontal{
+    display: none;
+}
+
+body::-webkit-scrollbar {
+    width: 5px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #8888882d;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #13ad53c5;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #0a833cc5;
+}
+
+
+.main{
+    margin: 30px;
+    display: inline-block;
+    align-items: center;
+    width: calc(100% - 64px);
+    box-shadow: 0px -2px 8px 0px #24f59ebf;
+    border: none;
+    border-radius: 32px;
+}
+
+.error-alert{
+    display: none;
+    background-color: rgb(248, 100, 100);
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+.error-alert i{
+    position: absolute;
+    color: #272727;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.main-h1{
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    color: rgb(52, 226, 128);
+}
+
+.separator{
+    border: 0.1px solid rgba(49, 49, 49, 0.582);
+}
+
+.FilePath-text{
+    font-family: 'Josefin Sans', sans-serif;
+    color: seagreen;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
+.FilePath-input{
+    margin-top: 5%;
+    margin-left: 3%;
+    font-family: 'Ubuntu Mono', monospace;
+    color: seagreen;
+    background-color: transparent;
+    border: 2px solid #333333;
+    border-radius: 16px;
+    padding: 10px;
+    outline: none;
+    width: 60%;
+    transition: all 0.2s;
+}
+
+.FilePath-input:focus{
+    border: 2px solid seagreen;
+    border-radius: 16px;
+    padding: 10px;
+}
+
+.separator{
+    margin-top: 5%;
+}
+
+.Diagram-button{
+    width: 20%;
+    height: 50px;
+    font-family: 'Ubuntu Mono', monospace;
+    font-weight: bold;
+    color: #26e083;
+    background-color: transparent;
+    border: 2px solid #07854642;
+    border-top-color: #078546;
+    border-left-color: #078546;
+    border-radius: 64px;
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 5%;
+    margin-left: 25%;
+    transition: all 0.3s;
+    outline: none;
+    cursor: pointer;
+}
+
+.Diagram-button:hover{
+    border-top-color: #07854642;
+    border-left-color: #07854642;
+    border-bottom-color: #078546;
+    border-right-color: #078546;
+}
+
+.buttons-animation:hover{
+    animation: pulse !important;
+    animation-duration: 0.7s !important;
+}
+
+.selected{
+    transform: scale(1.1);
+}
+
+.Graphic-button{
+    width: 20%;
+    height: 50px;
+    font-family: 'Ubuntu Mono', monospace;
+    font-weight: bold;
+    color: #26e083;
+    background-color: transparent;
+    border: 2px solid #07854642;
+    border-right-color: #078546;
+    border-bottom-color: #078546;
+    border-radius: 64px;
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 5%;
+    margin-left: 50px;
+    margin-right: 25%;
+    transition: all 0.3s;
+    outline: none;
+    cursor: pointer;
+}
+
+.Graphic-button:hover{
+    border-right-color: #07854642;
+    border-bottom-color: #07854642;
+    border-top-color: #078546;
+    border-left-color: #078546;
+}
+
+.FileTemplate-text{
+    font-family: 'Josefin Sans', sans-serif;
+    display: inline-block;
+    color: seagreen;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
+.FileTemplate-button{
+    border: 1px solid rgb(126, 36, 99);
+    display: inline-block;
+    float: right;
+    margin-top: 5%;
+    margin-right: 10%;
+    width: 40px;
+    height: 23px;
+}
+
+.templates-container{
+    display: block;
+    margin-top: 5%;
+    min-height: 160px;
+    max-height: 310px;
+    background-color: #292929;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: none;
+    border-radius: 16px;
+    overflow-x: auto;
+    text-align: center;
+}
+
+.templates-container .template-text{
+    color: #4e4e4e;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.templates-container .template-box-item{
+    background-color: green;
+    position: relative;
+    border: none;
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.Go-button{
+    width: 100px;
+    float: right;
+    font-family: monospace;
+    color: #26e083;
+    background-color: transparent;
+    border: 2px solid #07854642;
+    border-right-color: #078546;
+    border-bottom-color: #078546;
+    border-radius: 64px;
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 5%;
+    margin-right: 7%;
+    margin-bottom: 5%;
+    transition: all 0.3s;
+    outline: none;
+    cursor: pointer;
+}
+
+.Go-button:hover{
+    border-top-color: #07854642;
+    border-left-color: #07854642;
+    border-bottom-color: #078546;
+    border-right-color: #078546;
+    animation: pulse;
+    animation-duration: 0.7s;
+}
+
+.Cancel-button{
+    width: 100px;
+    float: right;
+    font-family: monospace;
+    color: #26e083;
+    background-color: transparent;
+    border: 2px solid #07854642;
+    border-left-color: #078546;
+    border-top-color: #078546;
+    border-radius: 64px;
+    padding: 10px;
+    font-size: 18px;
+    margin-top: 5%;
+    margin-right: 3%;
+    margin-bottom: 5%;
+    transition: all 0.3s;
+    outline: none;
+    cursor: pointer;
+}
+
+.Cancel-button:hover{
+    border-right-color: #07854642;
+    border-bottom-color: #07854642;
+    border-top-color: #078546;
+    border-left-color: #078546;
+    animation: pulse;
+    animation-duration: 0.7s;
+}
