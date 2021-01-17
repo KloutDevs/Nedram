@@ -30,7 +30,7 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
             center: (center) ? center : true,
             closable: (closable) ? closable : true,
             title: (title) ? title : "Nedram",
-            icon: (icon) ? icon : undefined,
+            icon: (icon) ? icon : path.join(__dirname, '../public/img/NedramIcon.png'),
             parent: (parent) ? parent : null,
             contextIsolation: false,
             modal: (modal) ? modal : false,
@@ -71,6 +71,7 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
     }catch(e){
         logger('error', `An error occurred trying to create a new BrowserWindow. ${chalk.red.bold(e)}`);
         console.error(e);
+        return false;
     }
 
 }
