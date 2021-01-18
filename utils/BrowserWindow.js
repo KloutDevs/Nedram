@@ -38,6 +38,7 @@ async function createWindow(filePath, {width, height, minWidth, minHeight, maxWi
             show: (show) ? show : false,
             webPreferences: {
                 nodeIntegration: true,//(nodeIntegration) ? nodeIntegration : true,
+                enableRemoteModule: true
             }
         });
     
