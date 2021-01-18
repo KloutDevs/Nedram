@@ -1,10 +1,36 @@
-ipcRenderer.invoke('getMainWindow', 'isMaximized').then(async (boolean) => {
-    if(boolean == true){
+if(remote.getCurrentWindow().isMaximized() == true){
+    document.querySelector('#icon_restore').classList.remove('hide');
+    document.querySelector('#icon_maximize').classList.add('hide');
+}else if(remote.getCurrentWindow().isMaximized() == false){
+    document.querySelector('#icon_restore').classList.add('hide');
+    document.querySelector('#icon_maximize').classList.remove('hide');
+}
+
+document.querySelector('#btn-minimize').addEventListener('click', () => {
+    if(remote.getCurrentWindow().isMinimized() == false){
+        remote.getCurrentWindow().minimize();
+    }
+});
+
+document.querySelector('#btn-maximize').addEventListener('click', () => {
+    if(remote.getCurrentWindow().isMaximized() == true){
+        remote.getCurrentWindow().unmaximize();
         document.querySelector('#icon_restore').classList.remove('hide');
         document.querySelector('#icon_maximize').classList.add('hide');
-    }else{
+    }else if(remote.getCurrentWindow().isMaximized() == false){
+        remote.getCurrentWindow().maximize();
         document.querySelector('#icon_restore').classList.add('hide');
         document.querySelector('#icon_maximize').classList.remove('hide');
+    }
+});
+document.querySelector('#btn-close').addEventListener('click', () => {
+    remote.getCurrentWindow().close();
+});
+document.querySelector('#btn-devTools').addEventListener('click', () => {
+    if(remote.getCurrentWindow().webContents.isDevToolsOpened() == true){
+        remote.getCurrentWindow().webContents.closeDevTools();
+    }else{
+        remote.getCurrentWindow().webContents.openDevTools();
     }
 });
 
@@ -73,26 +99,4 @@ document.querySelector('#btn-config').addEventListener('click', () => {
             return;
         }
     })
-});
-
-document.querySelector('#btn-minimize').addEventListener('click', () => {
-    ipcRenderer.invoke('app-minimize');
-});
-document.querySelector('#btn-maximize').addEventListener('click', () => {
-    ipcRenderer.invoke('app-maximize');
-    ipcRenderer.invoke('getMainWindow', 'isMaximized').then(async (boolean) => {
-        if(boolean == true){
-            document.querySelector('#icon_restore').classList.remove('hide');
-            document.querySelector('#icon_maximize').classList.add('hide');
-        }else{
-            document.querySelector('#icon_restore').classList.add('hide');
-            document.querySelector('#icon_maximize').classList.remove('hide');
-        }
-    });
-});
-document.querySelector('#btn-close').addEventListener('click', () => {
-    ipcRenderer.invoke('app-close');
-});
-document.querySelector('#btn-devTools').addEventListener('click', () => {
-    ipcRenderer.invoke('openDevTools');
 });
