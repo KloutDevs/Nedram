@@ -217,7 +217,8 @@ body::-webkit-scrollbar {
     max-height: 4px;
     background-color: var(--bgNavbarShow);
     border-radius: 16px;
-    text-align: center
+    text-align: center;
+    cursor: pointer;
 }
 
 .navbar-section-explorer table tr td .explorer-text {
@@ -271,6 +272,15 @@ body::-webkit-scrollbar {
     margin-left: 0px !important;
 }
 
+.moveTheMargin {
+    margin-left: 350px !important;
+}
+
+.adjustWidth {
+    min-width: calc(96% - 350px);
+    max-width: calc(96% - 350px);
+}
+
 .showWithHeight {
     min-height: 300px !important;
     max-height: 300px !important;
@@ -300,6 +310,7 @@ body::-webkit-scrollbar {
     overflow: hidden;
     white-space: nowrap;
     list-style-type: none;
+    transition: all 0.5s;
 }
 
 .filesNavbar:hover{
@@ -369,29 +380,6 @@ body::-webkit-scrollbar {
     background: #0a833c4f;
 }
 
-
-                /* OTHERS STYLES */
-
-.drag {
-    -webkit-app-region:drag;
-}
-
-.no-drag {
-    -webkit-app-region: no-drag
-}
-
-.pointer {
-    cursor: pointer;
-}
-
-.hide {
-    display: none;
-}
-
-.shortcut-or {
-    color: #AAA;
-}
-
                 /* MATERIAL ICONS IMPORT */
 
 @font-face {
@@ -419,6 +407,28 @@ body::-webkit-scrollbar {
 .material-icons.tiny {
 	font-size: 15px;
 	padding-bottom: 15px;
+}
+
+                /* OTHERS STYLES */
+
+.drag {
+    -webkit-app-region:drag;
+}
+
+.no-drag {
+    -webkit-app-region: no-drag
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+.shortcut-or {
+    color: #AAA;
 }
 
                 /* MEDIA QUERIES */
