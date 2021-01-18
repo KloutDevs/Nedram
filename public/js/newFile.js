@@ -40,15 +40,22 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
             fs.stat(filePath.value.substring(0, filePath.value.lastIndexOf('/')), function(err, stats) {
                 if(err){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';        
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;    
                 }else if(stats.isDirectory() == false){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';            
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;           
                 }else if(stats.isDirectory() == true){
                     fileDate.filePath = filePath.value;
                     let __ = filePath.value.substring(filePath.value.lastIndexOf('/')+1, filePath.value.length);
                     fileDate.fileName = __.substring(0, __.indexOf('.'));;
                     if(filePath.value.includes('.')){
+                        if(__.substring(__.indexOf('.')+1, __.length) != 'dgm' && __.substring(__.indexOf('.')+1, __.length) != 'gpc'){
+                            errorAlert.style.display = 'block';
+                            errorText.innerHTML = 'The format you entered in the file path is invalid, only <b>"DGM"</b> and <b>"GPC"</b> are allowed.';
+                            return;
+                        }
                         fileDate.fileFormat = __.substring(__.indexOf('.')+1, __.length);
                     }else{
                         fileDate.fileFormat = undefined;
@@ -116,15 +123,22 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
             fs.stat(filePath.value.substring(0, filePath.value.lastIndexOf('/')), function(err, stats) {
                 if(err){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';        
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;    
                 }else if(stats.isDirectory() == false){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';            
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;           
                 }else if(stats.isDirectory() == true){
                     fileDate.filePath = filePath.value;
                     let __ = filePath.value.substring(filePath.value.lastIndexOf('/')+1, filePath.value.length);
                     fileDate.fileName = __.substring(0, __.indexOf('.'));;
                     if(filePath.value.includes('.')){
+                        if(__.substring(__.indexOf('.')+1, __.length) != 'dgm' && __.substring(__.indexOf('.')+1, __.length) != 'gpc'){
+                            errorAlert.style.display = 'block';
+                            errorText.innerHTML = 'The format you entered in the file path is invalid, only <b>"DGM"</b> and <b>"GPC"</b> are allowed.';
+                            return;
+                        }
                         fileDate.fileFormat = __.substring(__.indexOf('.')+1, __.length);
                     }else{
                         fileDate.fileFormat = undefined;
@@ -192,15 +206,22 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
             fs.stat(filePath.value.substring(0, filePath.value.lastIndexOf('/')), function(err, stats) {
                 if(err){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';        
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;    
                 }else if(stats.isDirectory() == false){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';            
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;           
                 }else if(stats.isDirectory() == true){
                     fileDate.filePath = filePath.value;
                     let __ = filePath.value.substring(filePath.value.lastIndexOf('/')+1, filePath.value.length);
                     fileDate.fileName = __.substring(0, __.indexOf('.'));;
                     if(filePath.value.includes('.')){
+                        if(__.substring(__.indexOf('.')+1, __.length) != 'dgm' && __.substring(__.indexOf('.')+1, __.length) != 'gpc'){
+                            errorAlert.style.display = 'block';
+                            errorText.innerHTML = 'The format you entered in the file path is invalid, only <b>"DGM"</b> and <b>"GPC"</b> are allowed.';
+                            return;
+                        }
                         fileDate.fileFormat = __.substring(__.indexOf('.')+1, __.length);
                     }else{
                         fileDate.fileFormat = undefined;
