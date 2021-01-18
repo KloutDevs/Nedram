@@ -1,5 +1,4 @@
 let fs = require('fs');
-let path = require('path');
 let errorAlert = document.querySelector('.error-alert');
 let errorText = document.querySelector('.error-alert-text');
 
@@ -22,13 +21,13 @@ document.querySelector('.Graphic-button').addEventListener('click', () => {
 });
 
 document.querySelector('.Go-button').addEventListener('click', async () => {
+    
     let fileDate = {
         filePath: null,
         fileName: null,
         fileFormat: null,
         fileTemplate: null,
     };
-
     let filePath = document.querySelector('.FilePath-input');
 
     if(document.querySelector('.error-alert').style.display == 'block'){
@@ -49,8 +48,8 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                 }else if(stats.isDirectory() == true){
                     fileDate.filePath = filePath.value;
                     let __ = filePath.value.substring(filePath.value.lastIndexOf('/')+1, filePath.value.length);
-                    fileDate.fileName = __.substring(0, __.indexOf('.'));;
                     if(filePath.value.includes('.')){
+                        fileDate.fileName = __.substring(0, __.indexOf('.'));;
                         if(__.substring(__.indexOf('.')+1, __.length) != 'dgm' && __.substring(__.indexOf('.')+1, __.length) != 'gpc'){
                             errorAlert.style.display = 'block';
                             errorText.innerHTML = 'The format you entered in the file path is invalid, only <b>"DGM"</b> and <b>"GPC"</b> are allowed.';
@@ -58,6 +57,7 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                         }
                         fileDate.fileFormat = __.substring(__.indexOf('.')+1, __.length);
                     }else{
+                        fileDate.fileName = __;
                         fileDate.fileFormat = undefined;
                     }
                     if(document.querySelector('.Diagram-button').classList.contains('selected')){
@@ -99,6 +99,7 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                             fileFormat: null,
                             fileTemplate: null,
                         };
+                        return;
                     }
                 }
             });
@@ -106,10 +107,12 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
             fs.stat(filePath.value, function (err, stats) {
                 if(err){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';        
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;        
                 }else if(stats.isDirectory() == false){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';            
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;     
                 }else if(stats.isDirectory() == true){
                     fileDate.filePath = filePath.value;
                     fileDate.fileName = undefined,
@@ -132,8 +135,8 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                 }else if(stats.isDirectory() == true){
                     fileDate.filePath = filePath.value;
                     let __ = filePath.value.substring(filePath.value.lastIndexOf('/')+1, filePath.value.length);
-                    fileDate.fileName = __.substring(0, __.indexOf('.'));;
                     if(filePath.value.includes('.')){
+                        fileDate.fileName = __.substring(0, __.indexOf('.'));;
                         if(__.substring(__.indexOf('.')+1, __.length) != 'dgm' && __.substring(__.indexOf('.')+1, __.length) != 'gpc'){
                             errorAlert.style.display = 'block';
                             errorText.innerHTML = 'The format you entered in the file path is invalid, only <b>"DGM"</b> and <b>"GPC"</b> are allowed.';
@@ -141,6 +144,7 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                         }
                         fileDate.fileFormat = __.substring(__.indexOf('.')+1, __.length);
                     }else{
+                        fileDate.fileName = __;
                         fileDate.fileFormat = undefined;
                     }
                     if(document.querySelector('.Diagram-button').classList.contains('selected')){
@@ -182,6 +186,7 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                             fileFormat: null,
                             fileTemplate: null,
                         };
+                        return;
                     }
                 }
             });
@@ -189,10 +194,12 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
             fs.stat(filePath.value, function (err, stats) {
                 if(err){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';        
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;        
                 }else if(stats.isDirectory() == false){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';            
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;     
                 }else if(stats.isDirectory() == true){
                     fileDate.filePath = filePath.value;
                     fileDate.fileName = undefined,
@@ -215,8 +222,8 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                 }else if(stats.isDirectory() == true){
                     fileDate.filePath = filePath.value;
                     let __ = filePath.value.substring(filePath.value.lastIndexOf('/')+1, filePath.value.length);
-                    fileDate.fileName = __.substring(0, __.indexOf('.'));;
                     if(filePath.value.includes('.')){
+                        fileDate.fileName = __.substring(0, __.indexOf('.'));;
                         if(__.substring(__.indexOf('.')+1, __.length) != 'dgm' && __.substring(__.indexOf('.')+1, __.length) != 'gpc'){
                             errorAlert.style.display = 'block';
                             errorText.innerHTML = 'The format you entered in the file path is invalid, only <b>"DGM"</b> and <b>"GPC"</b> are allowed.';
@@ -224,6 +231,7 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                         }
                         fileDate.fileFormat = __.substring(__.indexOf('.')+1, __.length);
                     }else{
+                        fileDate.fileName = __;
                         fileDate.fileFormat = undefined;
                     }
                     if(document.querySelector('.Diagram-button').classList.contains('selected')){
@@ -265,6 +273,7 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                             fileFormat: null,
                             fileTemplate: null,
                         };
+                        return;
                     }
                 }
             });
@@ -272,10 +281,12 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
             fs.stat(filePath.value, function (err, stats) {
                 if(err){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';        
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;        
                 }else if(stats.isDirectory() == false){
                     errorAlert.style.display = 'block';
-                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';            
+                    errorText.innerHTML = 'The file path is a invalid directory, correct it.';
+                    return;     
                 }else if(stats.isDirectory() == true){
                     fileDate.filePath = filePath.value;
                     fileDate.fileName = undefined,
@@ -285,4 +296,9 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
         }
     }
     
+});
+
+document.querySelector('.Cancel-button').addEventListener('click', async () => {
+    let newFileWindow = remote.getCurrentWindow();
+    newFileWindow.close();
 });
