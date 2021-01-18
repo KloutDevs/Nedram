@@ -12,24 +12,65 @@ fileManagerData.files = appOptions.openFiles;
 if(fileManagerData.totalFiles < 1){
     openWelcomeFile();
 }else{
-
+    for(var f=0;f < fileManagerData.totalFiles;f++){
+        //openFile(file);
+    }
 }
 
 let mainC = document.querySelector('.main-content');
 
-function openFile(){
+ipcRenderer.on('newFile', (event, file) => {
+    createNewFile(file);
+});
 
+async function openNewFileWindow(){
+    ipcRenderer.invoke('newChildWindow', '../../views/newFile.ejs', {
+        width: 800,
+        height: 600,
+        minWidth: 800,
+        maxWidth: 800,
+        minHeight: 500,
+        maxHeight: 500,
+        show: true,
+        resizable: false,
+        closable: false,
+        movable: true,
+        parent: 1
+    }).then(async r => {
+        if(r == false){
+            ipcRenderer.invoke('logger', 'error', 'Error on load the New File Window');
+        }
+    });
 }
+
+async function createNewFile(file){
+    if(fileManagerData.totalFiles == 1){
+        if(fileManagerData.files[0].fileName == 'Welcome'){
+            fileManagerData.files = [];
+            fileManagerData.totalFiles = 0;
+            document.querySelector('.filesNavbar').childNodes[1].remove();
+        }
+    }
+    fileManagerData.totalFiles++;
+    let fileName = file.filePath.substring(0, file.filePath.indexOf('.'));
+    await fs.appendFile(fileName+'.ejs', '<h1>Prueba</h1>', async () => {
+        file.filePath = fileName+'.ejs';
+        await addToFileNavbar(file);
+        await renderFile(file, document.querySelector('.filesNavbar').childNodes[document.querySelector('.filesNavbar').childNodes.length - 1]);
+    });
+}
+
+        /* IMPORTANT FUNCTIONS */
 
 function addToFileNavbar(file){
     let fileFormatIcon, fileFormat;
     if(file.fileFormat == 'Welcome'){
         fileFormatIcon = 'WelcomeIcon';
         fileFormat = 'txt';
-    }else if(file.fileFormat == 'Diagram'){
+    }else if(file.fileFormat == 'Diagram' || file.fileFormat == 'dgm'){
         fileFormatIcon = 'DiagramIcon';
-        fileFormat = 'dgc';
-    }else if(file.fileFormat == 'Graphic'){
+        fileFormat = 'dgm';
+    }else if(file.fileFormat == 'Graphic' || file.fileFormat == 'gpc'){
         fileFormatIcon = 'GraphicIcon';
         fileFormat = 'gpc';
     }
@@ -55,7 +96,7 @@ function addToFileNavbar(file){
         document.querySelector('.filesNavbar').insertBefore(fileInNavbar, null);
         return true;
     }catch(e){
-        console.error(e);
+        ipcRenderer.invoke('logger', 'error', e)
         return false;
     }
 }
@@ -93,8 +134,10 @@ async function renderFile(file, childNodeElement){
         }
         ipcRenderer.invoke('discordRPC', {type: 'Editing', fileFormatIcon: fileFormatIcon, fileFormat: fileFormat, details: details, imageText: imageText, smallImage: smallImage, file: file});
     }else{
-        let html = ejs.render('<%- include(path) %>', {path: path.join(__dirname, file.filePath)});
-        mainC.innerHTML = html;
+        console.log(file.filePath);
+        ejs.renderFile(file.filePath).then(html => {
+            mainC.innerHTML = html;
+        });
         childNodeElement.classList.add('fileSelected');
         let title = await ipcRenderer.invoke('titleUpdate', file.fileName);
         document.querySelector('.titleApp').innerHTML = title;
@@ -138,7 +181,7 @@ function closeFile(childNodeElement){
             return true;
         }
     }catch(e){
-        console.error(e);
+        ipcRenderer.invoke('logger', 'error', e);
         return false;
     }
 }
