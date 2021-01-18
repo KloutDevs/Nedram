@@ -1,5 +1,5 @@
 let fileManagerData = {
-    totalFiles: 1, // fileNavbar already have a childNode "#text"
+    totalFiles: 0,
     recentFiles: [],
     files: [],
     fileSelected: undefined,
@@ -46,15 +46,16 @@ async function openNewFileWindow(){
 async function createNewFile(file){
     if(fileManagerData.totalFiles == 1){
         if(fileManagerData.files[0].fileName == 'Welcome'){
+            document.querySelector('.'+fileManagerData.files[0].fileKey).remove();
             fileManagerData.files = [];
             fileManagerData.totalFiles = 0;
-            document.querySelector('.filesNavbar').childNodes[1].remove();
         }
-    }
+    } // DELETE WELCOME FILE IF THIS EXISTS
     fileManagerData.totalFiles++;
-    let fileName = file.filePath.substring(0, file.filePath.indexOf('.'));
-    await fs.appendFile(fileName+'.ejs', '<h1>Prueba</h1>', async () => {
-        file.filePath = fileName+'.ejs';
+    file.fileKey = "f"+Math.random().toString(36).substring(2, 8);
+    let fileName = file.filePath.substring(0, file.filePath.indexOf('.'))+'.ejs';
+    await fs.appendFile(fileName, '<h1>Prueba de archivo</h1>', async () => {
+        file.filePath = fileName;
         fileManagerData.files.push(file);
         await addToFileNavbar(file);
         await renderFile(file, document.querySelector('.filesNavbar').childNodes[document.querySelector('.filesNavbar').childNodes.length - 1]);
@@ -75,24 +76,34 @@ function addToFileNavbar(file){
         fileFormatIcon = 'GraphicIcon';
         fileFormat = 'gpc';
     }
+
+    if(file.fileName == undefined){
+        file.fileName = file.fileKey;
+    }
+
     try{
         let fileInNavbar = document.createElement("li");
         fileInNavbar.classList.add("no-drag");
         fileInNavbar.classList.add("pointer");
         fileInNavbar.classList.add("file");
+        fileInNavbar.classList.add(file.fileKey);
         let htmlFile = `<img src="../public/img/${fileFormatIcon}.png">\n
         <span>${file.fileName}.${fileFormat}</span>\n
         <i class="material-icons tiny btn-close-file"">close</i>`
         fileInNavbar.innerHTML = htmlFile;
         fileInNavbar.addEventListener('click', (event) => {
-            if(event.srcElement.childNodes.length <= 1){
+            if(event.srcElement.innerText == 'close'){
                 return;
             }else{
-                renderFile(file, document.querySelector('.filesNavbar').childNodes.length - 1);
+                if(fileManagerData.fileSelected == file.fileKey){
+                    return;
+                }else{
+                    renderFile(file);
+                }
             }
         });
         fileInNavbar.childNodes[4].addEventListener('click', () => {
-            closeFile(document.querySelector('.filesNavbar').childNodes.length - 1);
+            closeFile(file);
         });
         document.querySelector('.filesNavbar').insertBefore(fileInNavbar, null);
         return true;
@@ -102,17 +113,21 @@ function addToFileNavbar(file){
     }
 }
 
-async function renderFile(file, childNodeElement){
-    if(file.filePath == "allFilesClosed" && childNodeElement == undefined){
+async function renderFile(file){
+    if(file.filePath == "allFilesClosed"){
         let html = ejs.render('<%- include(path) %>', {path: path.join(__dirname, "noFiles.ejs")});
         mainC.innerHTML = html;
         ipcRenderer.invoke('discordRPC', {type: 'Idle', fileFormatIcon: 'nedramicon', imageText: 'https://github.com/KloutDevs/Nedram/'});
     }else if(file.filePath == undefined){
         let html = ejs.render('<%- include(path) %>', {path: path.join(__dirname, "welcomeFile.ejs")});
         mainC.innerHTML = html;
-        childNodeElement.classList.add('fileSelected');
-        let title = await ipcRenderer.invoke('titleUpdate', file.fileName);
-        document.querySelector('.titleApp').innerHTML = title;
+        document.querySelector('.'+file.fileKey).classList.add('fileSelected');
+        if(fileManagerData.fileSelected != undefined){
+           document.querySelector('.'+fileManagerData.fileSelected).classList.remove('fileSelected');
+        }
+        fileManagerData.fileSelected = file.fileKey;
+        remote.getCurrentWindow().setTitle(file.fileName+' - Nedram');
+        document.querySelector('.titleApp').innerHTML = file.fileName+' - Nedram';
         let fileFormatIcon, fileFormat, details, imageText, smallImage;
         if(file.fileFormat == 'Welcome'){
             fileFormatIcon = 'nedramicon';
@@ -135,13 +150,18 @@ async function renderFile(file, childNodeElement){
         }
         ipcRenderer.invoke('discordRPC', {type: 'Editing', fileFormatIcon: fileFormatIcon, fileFormat: fileFormat, details: details, imageText: imageText, smallImage: smallImage, file: file});
     }else{
-        console.log(file.filePath);
         ejs.renderFile(file.filePath).then(html => {
             mainC.innerHTML = html;
         });
-        childNodeElement.classList.add('fileSelected');
-        let title = await ipcRenderer.invoke('titleUpdate', file.fileName);
-        document.querySelector('.titleApp').innerHTML = title;
+        document.querySelector('.'+file.fileKey).classList.add('fileSelected');
+        if(fileManagerData.fileSelected != undefined){
+           if(document.querySelector('.'+fileManagerData.fileSelected) != undefined){
+            document.querySelector('.'+fileManagerData.fileSelected).classList.remove('fileSelected');
+           }
+        }
+        fileManagerData.fileSelected = file.fileKey;
+        remote.getCurrentWindow().setTitle(file.fileName+' - Nedram');
+        document.querySelector('.titleApp').innerHTML = file.fileName+' - Nedram';
         let fileFormatIcon, fileFormat, details, imageText, smallImage;
         if(file.fileFormat == 'Welcome'){
             fileFormatIcon = 'nedramicon';
@@ -166,19 +186,25 @@ async function renderFile(file, childNodeElement){
     }
 }
 
-function closeFile(childNodeElement){
+function closeFile(file){
     try{
         fileManagerData.totalFiles--;
-        document.querySelector('.filesNavbar').childNodes[childNodeElement].remove();
-        if(childNodeElement > 1){
-            let file = fileManagerData.files[childNodeElement -1];
-            renderFile(file, childNodeElement - 1);
+        console.log(file.fileKey)
+        let getFileItem = getItemWithKey(file.fileKey, fileManagerData.files);
+        let remove = fileManagerData.files.splice(getFileItem.itemIndex, 1);
+        console.log(getFileItem);
+        console.log(fileManagerData.files);
+        document.querySelector('.'+file.fileKey).remove();
+        if(fileManagerData.fileSelected == file.fileKey) fileManagerData.fileSelected = undefined;
+        if(getFileItem.itemIndex != 0){
+            let file__ = fileManagerData.files[getFileItem.itemIndex - 1];
+            renderFile(file__);
             return true;
         }else{
-            let file = {
+            let file_ = {
                 filePath: "allFilesClosed"
             }
-            renderFile(file, undefined);
+            renderFile(file_);
             return true;
         }
     }catch(e){
@@ -192,9 +218,22 @@ async function openWelcomeFile(){
     let fileData = {
         filePath: undefined,
         fileName: "Welcome",
-        fileFormat: "Welcome"
+        fileFormat: "Welcome",
+        fileKey: "welcomeKey"
     }
     fileManagerData.files.push(fileData);
     await addToFileNavbar(fileData);
-    await renderFile(fileData, document.querySelector('.filesNavbar').childNodes[document.querySelector('.filesNavbar').childNodes.length - 1]);
+    await renderFile(fileData);
+}
+
+function getItemWithKey(key, arr){
+    for(var ii=0;ii < arr.length;ii++){
+        if(arr[ii].fileKey == key){
+            let newData = {
+                item: arr[ii],
+                itemIndex: ii
+            }
+            return newData;
+        }
+    }
 }
