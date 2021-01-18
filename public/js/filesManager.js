@@ -55,6 +55,7 @@ async function createNewFile(file){
     let fileName = file.filePath.substring(0, file.filePath.indexOf('.'));
     await fs.appendFile(fileName+'.ejs', '<h1>Prueba</h1>', async () => {
         file.filePath = fileName+'.ejs';
+        fileManagerData.files.push(file);
         await addToFileNavbar(file);
         await renderFile(file, document.querySelector('.filesNavbar').childNodes[document.querySelector('.filesNavbar').childNodes.length - 1]);
     });
