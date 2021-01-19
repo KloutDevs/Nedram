@@ -1,4 +1,4 @@
-# Nedram v0.2.8
+# Nedram v0.3.0
 
 ***Nedram** is a completely free and **open source** desktop program with web programming languages, developed with the "Electron" framework. This one is based on **diagrams and graphs**.*
 ##
