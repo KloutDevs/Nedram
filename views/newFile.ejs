@@ -5,11 +5,24 @@
         <link rel="stylesheet" href="../public/css/animate.min.css">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@0;1&family=Staatliches&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
         <script src="https://kit.fontawesome.com/fcab31dd80.js" crossorigin="anonymous"></script>
     </head>
     <body>
+        <div class="bar drag titleBar">
+            <div class="no-drag pointer titlebar-btn btn-devTools" id="btn-devTools"> <i class="material-icons tiny" title="Minimize">build</i> </div>
+    
+            <div class="title"> <img src="../public/img/NedramIcon-mini.png"> <span style="font-size: 14px;" class="titleApp">Create a new file</span></div>
+    
+            <div class="right-btns">
+                <div class="no-drag pointer titlebar-btn" id="btn-minimize"> <i class="material-icons tiny" title="Minimize">remove</i> </div>
+                <div class="no-drag pointer titlebar-btn" id="btn-maximize">
+                    <i id="icon_maximize" class="material-icons tiny hide" title="Maximize">crop_square</i>
+                    <i id="icon_restore" class="material-icons tiny hide" title="Restore">filter_none</i>
+                </div>
+                <div class="no-drag pointer titlebar-btn" id="btn-close"> <i class="material-icons tiny" title="Close">close</i> </div>
+            </div>
+        </div>
         <div class="error-alert">
             <i class="fa fa-times"></i>
             <span class="error-alert-text"></span>
@@ -21,13 +34,68 @@
             <hr class="separator">
             <button class="Diagram-button buttons-animation">Diagram</button>
             <button class="Graphic-button buttons-animation">Graphic</button>
+            <select class="typesList-select" name="typesList" required="true">
+                <!-- Diagrams -->
+                <optgroup class="typesList-optgroup selectFile" value="separator">Separator</optgroup>
+                <option class="typesList-option typesList-b selectFile" value="selectFile"> Select a type of file </option>
+                <optgroup class="typesList-optgroup selectFile" value="separator">Separator</optgroup>
+                <optgroup class="typesList-optgroup diagramOption" value="separator">Separator</optgroup>
+                <option class="typesList-option typesList-b diagramOption" value="diagramList"> ----[ List of diagrams ]---- </option>
+                <optgroup class="typesList-optgroup diagramOption" value="separator">Separator</optgroup>
+                <option class="typesList-option diagramOption" value="arc">Arc diagram</option>
+                <option class="typesList-option diagramOption" value="flow">Flow diagram</option>
+                <option class="typesList-option diagramOption" value="b_and_w">Boxes and whiskers diagram</option>
+                <option class="typesList-option diagramOption" value="gontt">Gontt diagram</option>
+                <option class="typesList-option diagramOption" value="venn">Venn diagram</option>
+                <option class="typesList-option diagramOption" value="net">Network diagram</option>
+                <option class="typesList-option diagramOption" value="rib">Ribbonless chord diagram</option>
+                <option class="typesList-option diagramOption" value="sank">Sankey diagram</option>
+                <option class="typesList-option diagramOption" value="sun">Sun ray diagram</option>
+                <option class="typesList-option diagramOption" value="tree">Tree diagram</option>
+                <optgroup class="typesList-optgroup diagramOption" value="separator">Separator</optgroup>
+                <!-- Graphics -->
+                <optgroup class="typesList-optgroup graphicOption" value="separator">Separator</optgroup>
+                <option class="typesList-option typesList-b graphicOption" value="graphicList"> ----[ List of graphics ]---- </option>
+                <optgroup class="typesList-optgroup graphicOption" value="separator">Separator</optgroup>
+                <option class="typesList-option graphicOption" value="cycles">Cycles graphic</option>
+                <option class="typesList-option graphicOption" value="processes">Processes graphic</option>
+                <option class="typesList-option graphicOption" value="pyr">Pyramids graphic</option>
+                <option class="typesList-option graphicOption" value="img">Images graphic</option>
+                <option class="typesList-option graphicOption" value="rel">Relations graphic</option>
+                <option class="typesList-option graphicOption" value="lists">Lists graphic</option>
+                <optgroup class="typesList-optgroup graphicOption" value="separator">Separator</optgroup>
+            </select>
             <hr class="separator">
             <span class="FileTemplate-text">File Template</span>
-            <div class="FileTemplate-button"></div>
-            <hr class="separator">
+            <div class="FileTemplate-button">
+                <div class="FileTemplate-switchButton"></div>
+            </div>
             <div class="templates-container">
                 <span class="template-text">Templates</span>
-
+                <div class="template-box diagramTemplate">
+                </div>
+                <div class="template-box diagramTemplate">
+                </div>
+                <div class="template-box diagramTemplate">
+                </div>
+                <div class="template-box diagramTemplate">
+                </div>
+                <div class="template-box diagramTemplate">
+                </div>
+                <div class="template-box diagramTemplate">
+                </div>
+                <div class="template-box graphicTemplate">
+                </div>
+                <div class="template-box graphicTemplate">
+                </div>
+                <div class="template-box graphicTemplate">
+                </div>
+                <div class="template-box graphicTemplate">
+                </div>
+                <div class="template-box graphicTemplate">
+                </div>
+                <div class="template-box graphicTemplate">
+                </div>
             </div>
             <br>
             <button class="Go-button">Go</button>
@@ -35,6 +103,7 @@
         </div>
         <script>
             const { ipcRenderer } = require('electron');
+            const remote = require('electron').remote;
             const ejs = require('ejs');
             const os = require('os');
             const appOptions = require('../appOptions.json');
