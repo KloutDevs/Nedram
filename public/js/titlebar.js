@@ -1,9 +1,9 @@
 if(remote.getCurrentWindow().isMaximized() == true){
-    document.querySelector('#icon_restore').classList.remove('hide');
-    document.querySelector('#icon_maximize').classList.add('hide');
-}else if(remote.getCurrentWindow().isMaximized() == false){
     document.querySelector('#icon_restore').classList.add('hide');
     document.querySelector('#icon_maximize').classList.remove('hide');
+}else if(remote.getCurrentWindow().isMaximized() == false){
+    document.querySelector('#icon_restore').classList.remove('hide');
+    document.querySelector('#icon_maximize').classList.add('hide');
 }
 
 document.querySelector('#btn-minimize').addEventListener('click', () => {
@@ -15,12 +15,12 @@ document.querySelector('#btn-minimize').addEventListener('click', () => {
 document.querySelector('#btn-maximize').addEventListener('click', () => {
     if(remote.getCurrentWindow().isMaximized() == true){
         remote.getCurrentWindow().unmaximize();
-        document.querySelector('#icon_restore').classList.remove('hide');
-        document.querySelector('#icon_maximize').classList.add('hide');
-    }else if(remote.getCurrentWindow().isMaximized() == false){
-        remote.getCurrentWindow().maximize();
         document.querySelector('#icon_restore').classList.add('hide');
         document.querySelector('#icon_maximize').classList.remove('hide');
+    }else if(remote.getCurrentWindow().isMaximized() == false){
+        remote.getCurrentWindow().maximize();
+        document.querySelector('#icon_restore').classList.remove('hide');
+        document.querySelector('#icon_maximize').classList.add('hide');
     }
 });
 document.querySelector('#btn-close').addEventListener('click', () => {
