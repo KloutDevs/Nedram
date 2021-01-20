@@ -2,6 +2,12 @@ let fs = require('fs');
 let errorAlert = document.querySelector('.error-alert');
 let errorText = document.querySelector('.error-alert-text');
 let isSelectedType;
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.main-h1').classList.add('animate__animated');
+    document.querySelector('.main-h1').classList.add('animate__backInDown');
+});
+
 if(remote.getCurrentWindow().isMaximized() == true){
     document.querySelector('#icon_restore').classList.remove('hide');
     document.querySelector('#icon_maximize').classList.add('hide');
