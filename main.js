@@ -112,7 +112,6 @@ app.on('ready', async () => {
     
         ipcMain.handle('newChildWindow', async (event, winPath, winOptions) => {
             let result = await createWindow(winPath, winOptions, appOptions);
-            result.webContents.openDevTools();
             if(createWindow == false){
                 return false;
             }else{
