@@ -44,3 +44,31 @@ document.addEventListener('keyup', (event, ctrlKey) => {
     }
 
 });
+
+document.querySelector('.openFile-button').addEventListener('click', () => {
+});
+document.querySelector('.openFolder-button').addEventListener('click', () => {
+});
+document.querySelector('.openWorkspace-button').addEventListener('click', () => {
+});
+document.querySelector('.openRecent-button').addEventListener('click', () => {
+});
+document.querySelector('.newFile-button').addEventListener('click', () => {
+    openNewFileWindow();
+});
+document.querySelector('.addFolderToWorkspace-button').addEventListener('click', () => {
+});
+document.querySelector('.save-button').addEventListener('click', () => {
+});
+document.querySelector('.saveAs-button').addEventListener('click', () => {
+});
+document.querySelector('.saveAll-button').addEventListener('click', () => {
+});
+document.querySelector('.revertChange-button').addEventListener('click', () => {
+});
+document.querySelector('.closeFile-button').addEventListener('click', () => {
+});
+document.querySelector('.closeFolder-button').addEventListener('click', () => {
+});
+document.querySelector('.closeAll-button').addEventListener('click', () => {
+});
