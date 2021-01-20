@@ -1,7 +1,7 @@
-if(remote.getCurrentWindow().isMaximized() == true){
+if(remote.getCurrentWindow().isMaximized() == false){
     document.querySelector('#icon_restore').classList.add('hide');
     document.querySelector('#icon_maximize').classList.remove('hide');
-}else if(remote.getCurrentWindow().isMaximized() == false){
+}else if(remote.getCurrentWindow().isMaximized() == true){
     document.querySelector('#icon_restore').classList.remove('hide');
     document.querySelector('#icon_maximize').classList.add('hide');
 }
