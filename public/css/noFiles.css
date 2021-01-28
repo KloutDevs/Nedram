@@ -11,7 +11,7 @@ body{
 .image{
     margin-top: 3%;
     text-align:center;
-    display: inherit;
+    display: inherit !important;
     font-size: 264px;
     color: var(--defaultColor);
 }
