@@ -4,37 +4,37 @@
     <meta charset="utf8">
     <link rel="stylesheet" href="../public/css/welcomeFile.css">
     <link rel="stylesheet" href="../public/css/animate.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@0;1&family=Staatliches&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/fcab31dd80.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../public/css/fonts.css">
+    <link rel="stylesheet" href="../public/css/fa.css" >
 </head>
 <body>
     <div id="customize_learn">
         <h5 class="customize_title">Customize</h5>
         <ul>
-            <li class="customize_colorThemeBtn">
+            <li onclick="colorThemeBtn()" class="customize_colorThemeBtn">
                 <h3>Color theme</h3>
                 <p>Change the colors of the program to the colors that you like and love the most.</p>
             </li>
-            <li class="customize_programShortcutsBtn">
+            <li onclick="programShortcutBtn()" class="customize_programShortcutsBtn">
                 <h3>Program shortcuts</h3>
                 <p>Define keyboard shortcuts so that you can work in your workspace faster and easier.</p>
             </li>
-            <li class="customize_programLanguageBtn">
+            <li onclick="programLanguageBtn()" class="customize_programLanguageBtn">
                 <h3>Program language</h3>
                 <p>Define your native language so that you can better understand the tools that the program offers you.</p>
             </li>
         </ul>
         <h5 class="learn_title">Learn</h5>
         <ul>
-            <li class="learn_howToDiagram">
+            <li onclick="howToDiagramBtn()" class="learn_howToDiagram">
                 <h3>How to create a diagram</h3>
                 <p>Coming soon.</p>
             </li>
-            <li class="learn_howToGraphic">
+            <li onclick="howToGraphicBtn()" class="learn_howToGraphic">
                 <h3>How to create a graphic</h3>
                 <p>Coming soon.</p>
             </li>
-            <li class="learn_howToExport">
+            <li onclick="howToExportBtn()" class="learn_howToExport">
                 <h3>How to export to PDF or other</h3>
                 <p>Coming soon.</p>
             </li>
@@ -44,10 +44,10 @@
         <h5>Start</h5>
         <ul>
             <li>
-                <a class="start_newFile">New File</a>
+                <a onclick="newFileBtn()" class="start_newFile">New File</a>
             </li>
             <li>
-                <a class="start_openFile">Open File</a> or <a class="start_openFolder">Open Folder</a>
+                <a onclick="openFileBtn()" class="start_openFile">Open File</a> or <a onclick="openFolderBtn()" class="start_openFolder">Open Folder</a>
             </li>
         </ul>
     </div>
