@@ -1,15 +1,15 @@
 <html>
     <head>
         <meta charset="utf8">
+        <link rel="stylesheet" href="../public/css/fonts.css">
+        <link rel="stylesheet" href="../public/css/fa.css" >
     </head>
     <body>
         <div class="bar drag title-bar">
-
             <div class="no-drag pointer titlebar-btn btn-devTools" id="btn-devTools"> <i class="material-icons tiny" title="Minimize">build</i> </div>
-    
             <div class="title"> <img src="../public/img/NedramIcon-mini.png"> <span style="font-size: 14px;" class="titleApp">Nedram</span></div>
-    
             <div class="right-btns">
+                <div class="no-drag pointer titlebar-btn" id="btn-notifications"><i class="material-icons tiny" title="Notifications">notifications_none</i></div>
                 <div class="no-drag pointer titlebar-btn" id="btn-minimize"> <i class="material-icons tiny" title="Minimize">remove</i> </div>
                 <div class="no-drag pointer titlebar-btn" id="btn-maximize">
                     <i id="icon_maximize" class="material-icons tiny hide" title="Maximize">crop_square</i>
@@ -18,7 +18,11 @@
                 <div class="no-drag pointer titlebar-btn" id="btn-close"> <i class="material-icons tiny" title="Close">close</i> </div>
             </div>
         </div>
-        
+        <div class="notifications_box" id="notifications_box">
+            <div class="notifications_body">
+            </div>
+            <div class="clearNotificationsBtn"><i class="fa fa-trash-alt"></i><span>Clear all</span></div>
+        </div>
         <div class="navbar">
             <div class="top-buttons">
                 <div class="no-drag pointer navbar-btn" id="btn-files"><i class="material-icons tiny">folder_open</i></div>
@@ -36,59 +40,59 @@
             <section class="navbar-section-explorer">
                 <table>
                     <tr>
-                        <td>
+                        <td class="openFile-button">
                             <span class="explorer-text">Open File</span>
                             <span class="explorer-shortcut">CTRL + E</span>
                         </td>
-                        <td>
+                        <td class="openFolder-button">
                             <span class="explorer-text">Open Folder</span>
                             <span class="explorer-shortcut">CTRL + F</span>
                         </td>
-                        <td>
+                        <td class="openWorkspace-button">
                             <span class="explorer-text">Open Workspace</span>
                             <span class="explorer-shortcut">CTRL + W</span>
                         </td>
-                        <td>
+                        <td class="openRecent-button">
                             <span class="explorer-text">Open Recent</span>
                             <span class="explorer-shortcut">CTRL + R</span>
                         </td>
-                        <td>
+                        <td class="newFile-button">
                             <span class="explorer-text">New File</span>
                             <span class="explorer-shortcut">CTRL + N</span>
                         </td>
-                        <td>
+                        <td class="addFolderToWorkspace-button">
                             <span class="explorer-text">Add folder to workspace</span>
                             <span class="explorer-shortcut">CTRL + ALT + W</span>
                         </td>
-                        <td>
+                        <td class="saveWorkspaceAs-button">
                             <span class="explorer-text">Save workspace as</span>
                             <span class="explorer-shortcut">CTRL + ALT + S</span>
                         </td>
-                        <td>
+                        <td class="save-button">
                             <span class="explorer-text">Save</span>
                             <span class="explorer-shortcut">CTRL + S</span>
                         </td>
-                        <td>
+                        <td class="saveAs-button">
                             <span class="explorer-text">Save as</span>
                             <span class="explorer-shortcut">CTRL + B</span>
                         </td>
-                        <td>
+                        <td class="saveAll-button">
                             <span class="explorer-text">Save all</span>
                             <span class="explorer-shortcut">CTRL + A</span>
                         </td>
-                        <td>
+                        <td class="revertChange-button">
                             <span class="explorer-text">Revert change</span>
                             <span class="explorer-shortcut">CTRL + Z</span>
                         </td>
-                        <td>
+                        <td class="closeFile-button">
                             <span class="explorer-text">Close File</span>
                             <span class="explorer-shortcut">CTRL + C</span>
                         </td>
-                        <td>
+                        <td class="closeFolder-button">
                             <span class="explorer-text">Close Folder</span>
                             <span class="explorer-shortcut">CTRL + X</span>
                         </td>
-                        <td>
+                        <td class="closeAll-button">
                             <span class="explorer-text">Close All</span>
                             <span class="explorer-shortcut">CTRL + V</span>
                         </td>
