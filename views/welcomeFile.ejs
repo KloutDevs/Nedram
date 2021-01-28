@@ -8,53 +8,77 @@
     <script src="https://kit.fontawesome.com/fcab31dd80.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <div class="recentFiles">
-        <h5 class="recentFiles-title">Recent Documents</h5>
-        <ul class="recentFiles-list">
+    <div id="customize_learn">
+        <h5 class="customize_title">Customize</h5>
+        <ul>
+            <li class="customize_colorThemeBtn">
+                <h3>Color theme</h3>
+                <p>Change the colors of the program to the colors that you like and love the most.</p>
+            </li>
+            <li class="customize_programShortcutsBtn">
+                <h3>Program shortcuts</h3>
+                <p>Define keyboard shortcuts so that you can work in your workspace faster and easier.</p>
+            </li>
+            <li class="customize_programLanguageBtn">
+                <h3>Program language</h3>
+                <p>Define your native language so that you can better understand the tools that the program offers you.</p>
+            </li>
+        </ul>
+        <h5 class="learn_title">Learn</h5>
+        <ul>
+            <li class="learn_howToDiagram">
+                <h3>How to create a diagram</h3>
+                <p>Coming soon.</p>
+            </li>
+            <li class="learn_howToGraphic">
+                <h3>How to create a graphic</h3>
+                <p>Coming soon.</p>
+            </li>
+            <li class="learn_howToExport">
+                <h3>How to export to PDF or other</h3>
+                <p>Coming soon.</p>
+            </li>
+        </ul>
+    </div>
+    <div id="start">
+        <h5>Start</h5>
+        <ul>
+            <li>
+                <a class="start_newFile">New File</a>
+            </li>
+            <li>
+                <a class="start_openFile">Open File</a> or <a class="start_openFolder">Open Folder</a>
+            </li>
+        </ul>
+    </div>
+    <div id="recentFiles">
+        <h5>Recent</h5>
+        <ul>
             <% if(fileManagerData.recentFiles.length >= 1){ %>
                 <% for(var i=0;i < fileManagerData.recentFiles.length;i++){ %>
-                    <li class="recentFile-file">
-                        <a class="recentFile-link"><%= fileManagerData.recentFiles[i] %></a>
+                    <li>
+                        <a><%= fileManagerData.recentFiles[i] %></a>
                     </li>
                     <br>
                 <% } %>
             <% }else{ %>
-                <li class="recentFile-file">
+                <li>
                     There are no recent files.
                 </li>
             <% } %>
         </ul>
     </div>
-    
-    <div class="app-info">
-        <img src="../public/img/NedramIcon-mini.png" class="app-info-img">
-        <p class="app-info-text">
-            Welcome to Nedram, a program with a comfortable and modern interface made for you to be able to easily create diagrams and graphics for your projects.
-        </p>
-        <p class="buttons-app-text">
-            You can start managing your diagrams and graphs
-            from the shortcuts below, or from the browser.
-        </p>
-        <ul class="buttons-app-list">
-            <li class="buttons-app-li">
-                <i class="fa fa-arrow-right"></i>   <a href="#" class="buttons-app-link">Open File</a>  <i class="fa fa-arrow-left"></i>
+    <div id="help">
+        <h5>Help</h5>
+        <ul>
+            <li>
+                <a href="https://github.com/KloutDevs/Nedram">GitHub Repository</a>
             </li>
-            <li class="buttons-app-li">
-                <i class="fa fa-arrow-right"></i>   <a href="#" class="buttons-app-link">Open Folder</a>    <i class="fa fa-arrow-left"></i>
-            </li>
-            <li class="buttons-app-li">
-                <i class="fa fa-arrow-right"></i>   <a href="#" class="buttons-app-link">Open Workspace</a> <i class="fa fa-arrow-left"></i>
-            </li>
-            <li class="buttons-app-li">
-                <i class="fa fa-arrow-right"></i>   <a href="#" class="buttons-app-link">Open Recent</a>    <i class="fa fa-arrow-left"></i>
-            </li>
-            <li class="buttons-app-li">
-                <i class="fa fa-arrow-right"></i>   <a href="#" class="buttons-app-link">New File</a>   <i class="fa fa-arrow-left"></i>
+            <li>
+                <a href="https://nedram.cf">Official webpage</a>
             </li>
         </ul>
     </div>
-
     <script src="../public/js/welcomeFile.js"></script>
 </body>
 </html>
