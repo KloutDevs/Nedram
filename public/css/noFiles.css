@@ -1,23 +1,31 @@
+:root{
+    --defaultColor: #ff3333;
+    --gray: #727275;
+    --gray2: #98989a;
+    --black: #171717;
+    --white: #c3d0d2;
+}
+body{
+    color: var(--gray);
+}
 .image{
     margin-top: 3%;
     text-align:center;
     display: inherit;
     font-size: 264px;
-    color: #13ad53c5;
+    color: var(--defaultColor);
 }
-
 .noFileTitle{
     text-align: center;
 }
-
 .noFileText{
     text-align: center;
 }
-
 .shortcut{
-    background-color: #13ad53c5;
+    background-color: var(--defaultColor);
     font-size: 12px;
     padding: 3px;
     margin: 5px;
     border-radius: 16px;
+    color: var(--white);
 }
