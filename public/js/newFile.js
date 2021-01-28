@@ -213,6 +213,7 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                             errorText.innerHTML = 'You need to specify the type of diagram you want to create.';
                             return;
                         }else{
+                            fileDate.fileType = isSelectedType;
                             if(fileDate.filePath != null && fileDate.fileName != null && fileDate.fileFormat != null, fileDate.fileTemplate != null){
                                 ipcRenderer.sendTo(1, 'newFile', fileDate);
                                 let newFileWindow = remote.getCurrentWindow();
@@ -304,6 +305,7 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                             errorText.innerHTML = 'You need to specify the type of diagram you want to create.';
                             return;
                         }else{
+                            fileDate.fileType = isSelectedType;
                             if(fileDate.filePath != null && fileDate.fileName != null && fileDate.fileFormat != null, fileDate.fileTemplate != null){
                                 ipcRenderer.sendTo(1, 'newFile', fileDate);
                                 let newFileWindow = remote.getCurrentWindow();
@@ -395,6 +397,7 @@ document.querySelector('.Go-button').addEventListener('click', async () => {
                             errorText.innerHTML = 'You need to specify the type of diagram you want to create.';
                             return;
                         }else{
+                            fileDate.fileType = isSelectedType;
                             if(fileDate.filePath != null && fileDate.fileName != null && fileDate.fileFormat != null, fileDate.fileTemplate != null){
                                 ipcRenderer.sendTo(1, 'newFile', fileDate);
                                 let newFileWindow = remote.getCurrentWindow();
