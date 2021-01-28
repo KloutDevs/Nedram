@@ -7,6 +7,7 @@
     --bgFileSelected: #1f1f1f;
     --bgMain: #1f1f1f;
     --bgExplorer: #292929;
+    --bgNotificationBox: #202020;
     --bgTitlebarButtonHover: #ffffff1a;
     --TitlebarTitle: #b3b3b3;
     --NavbarBtn: #6d6d6d;
@@ -40,6 +41,8 @@ body::-webkit-scrollbar {
     left: 0;
     right: 0;
     width: 100%;
+    position: sticky;
+    z-index: 10;
     overflow: hidden;
 }
 .title {
@@ -77,6 +80,113 @@ body::-webkit-scrollbar {
 .btn-devTools{
     padding: 8px 5px 12px 5px;
 }
+.notifications_box{
+    position: absolute;
+    display: inline-block;
+    top: -200px;
+    right: 50px;
+    width: 305px;
+    height: 200px;
+    border: none;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    background-color: var(--bgNotificationBox);
+    overflow: hidden;
+    z-index: 5;
+    transition: all 0.3s;
+}
+.notifications_box .notifications_body{
+    position: relative;
+    min-width: 100%;
+    min-height: calc(100% - 41px);
+    max-height: calc(100% - 41px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.notifications_box .notifications_body .notification_withoutNotifications{
+    display: block;
+    font-family: 'Ubuntu Mono';
+    max-width: 200px;
+    margin-top: 65px;
+    margin-left: 47px;
+    text-align: center;
+}
+.notifications_box .notifications_body .notification_item{
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-bottom: 0.2px solid var(--navbarHr);
+}
+.notifications_box .notifications_body .notification_item .notification_item_icon{
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    display: inline-block;
+    text-align: center;
+    float: left;
+}
+.notifications_box .notifications_body .notification_item .notification_item_icon i{
+    font-size: 28px;
+    margin-top: 7px;
+}
+.notifications_box .notifications_body .notification_item .notification_item_text{
+    min-width: calc(100% - 51px);
+    max-width: calc(100% - 51px);
+    min-height: 30px;
+    max-height: 30px;
+    display: inline-block;
+    padding: 5px;
+    text-align: center;
+    border: none;
+    border-left: 0.2px solid var(--navbarHr);
+    float: right;
+}
+.notifications_box .notifications_body .notification_item .notification_item_text p{
+    margin: 0;
+    padding: 0;
+}
+.notifications_box .clearNotificationsBtn{
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    border-top: 0.5px solid var(--navbarHr);
+    text-align: center;
+    bottom: 0px;
+}
+.notifications_box .clearNotificationsBtn i{
+    margin-top: 10px;
+    margin-right: 5px;
+    transition: all 0.3s;
+}
+.notifications_box .clearNotificationsBtn span{
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+.notifications_box .clearNotificationsBtn:hover > i{
+    color: var(--defaultColor2);
+}
+.notifications_box .clearNotificationsBtn:hover > span{
+    color: var(--defaultColor2);
+}
+.notifications_box:hover{
+    overflow: auto;
+}
+.notifications_box_show{
+    top: 40px;
+}
+.notifications_box .notifications_body::-webkit-scrollbar {
+    width: 3px;
+    height: 1px;
+}
+.notifications_box .notifications_body::-webkit-scrollbar-track {
+    background: transparent;
+}
+.notifications_box .notifications_body::-webkit-scrollbar-thumb {
+    background: var(--defaultColor);
+}
                 /* NAVBAR STYLES*/
 .navbar{
     display: inline-block;
@@ -86,7 +196,7 @@ body::-webkit-scrollbar {
     min-height: calc(100% - 28px);
     max-height: calc(100% - 28px);
     max-width: 4%;
-    z-index: 2;
+    z-index: 3;
 }
 .navbar-btn {
     transition: all 0.1s;
@@ -124,7 +234,7 @@ body::-webkit-scrollbar {
     max-width: 350px;
     min-height: calc(100% - 28px);
     max-height: calc(100% - 28px);
-    z-index: 1;
+    z-index: 2;
     margin-left: -360px;
     overflow: hidden;
     transition: all 0.5s;
@@ -326,31 +436,6 @@ body::-webkit-scrollbar {
 }
 .filesNavbar::-webkit-scrollbar-thumb:hover {
     background: #ff3333c5;
-}
-                /* MATERIAL ICONS IMPORT */
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(../fonts/Material.woff2) format('woff2');
-}
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
-}
-.material-icons.tiny {
-	font-size: 15px;
-	padding-bottom: 15px;
 }
                 /* OTHERS STYLES */
 .drag {
