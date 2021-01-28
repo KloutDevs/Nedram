@@ -1,7 +1,7 @@
-* {
+body {
+    background-color: var(--bgFilesNavbar);
     font-family: 'Josefin Sans', sans-serif;
 }
-
 .main {
     display: inline-block;
     position: absolute;
@@ -10,25 +10,26 @@
     max-height: calc(100% - 63px);
     min-width: 96%;
     max-width: 96%;
-    overflow: auto;
+    overflow: hidden;
+    overflow-y: auto;
     background-color: var(--bgMain);
+    transition: all 0.5s;
 }
-
+.main::webkit-scrollbar-button:horizontal{
+    display: none;
+}
 .main::-webkit-scrollbar {
     width: 10px;
 }
-
 .main::-webkit-scrollbar-track {
-    background: #888;
+    background: #8888882d;
 }
-
 .main::-webkit-scrollbar-thumb {
-    background: #13ad53c5;
+    background: var(--defaultColor);
 }
-
 .main::-webkit-scrollbar-thumb:hover {
-    background: #0a833cc5;
+    background: var(--defaultColor2);
 }
 .main-content{
-    padding: 50px;
+    padding: 60px;
 }
