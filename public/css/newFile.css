@@ -1,7 +1,19 @@
+:root{
+    --bgBody: #272727;
+    --bgTitlebar: #303030;
+    --colorHr: rgba(49, 49, 49, 0.582);
+    --title_bar: #b3b3b3;
+    --defaultColor: #ff3333;
+    --defaultColor2: #ff6666;
+    --defaultColor3: #ff333346;
+    --white: #d6d6d6;
+    --gray: #9c9c9c;
+    --gray2: #8a8a8a;
+}
             /* BODY */
 body{
     margin: 0;
-    background-color: #272727;
+    background-color: var(--bgBody);
 }
 body::webkit-scrollbar-button:horizontal{
     display: none;
@@ -13,10 +25,10 @@ body::-webkit-scrollbar-track {
     background: #8888882d;
 }
 body::-webkit-scrollbar-thumb {
-    background: #13ad53c5;
+    background: var(--defaultColor);
 }
 body::-webkit-scrollbar-thumb:hover {
-    background: #0a833cc5;
+    background: var(--defaultColor2);
 }
         /* TITLE BAR */
 .title-bar {
@@ -30,12 +42,12 @@ body::-webkit-scrollbar-thumb:hover {
     width: 100%;
     overflow: hidden;
     position: sticky;
-    background-color: #303030;
+    background-color: var(--bgTitlebar);
 }
 .title {
     float: left;
     margin: 3px 0 0 5px;
-    color: #b3b3b3;
+    color: var(--title_bar);
     font-family: sans-serif;
     font-size: 18px;
 }
@@ -62,7 +74,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 .titlebar-btn:hover {
     background: #ffffff1a;
-    color: #26c94a;
+    color: var(--defaultColor);
 }
 .btn-devTools{
     padding: 8px 5px 12px 5px;
@@ -73,9 +85,10 @@ body::-webkit-scrollbar-thumb:hover {
     display: inline-block;
     align-items: center;
     width: calc(100% - 64px);
-    box-shadow: 0px -2px 8px 0px #24f59ebf;
+    box-shadow: 0px -2px 8px 0px var(--defaultColor);
     border: none;
     border-radius: 32px;
+    overflow: hidden;
 }
         /* ERROR ALERT */
 .error-alert{
@@ -98,16 +111,16 @@ body::-webkit-scrollbar-thumb:hover {
 .main-h1{
     font-family: 'Josefin Sans', sans-serif;
     text-align: center;
-    color: rgb(52, 226, 128);
+    color: var(--defaultColor);
 }
 .separator{
-    border: 0.1px solid rgba(49, 49, 49, 0.582);
+    border: 0.1px solid var(--colorHr);
     margin-top: 5%;
 }
     /* FILE PATH STYLES */
 .FilePath-text{
     font-family: 'Josefin Sans', sans-serif;
-    color: seagreen;
+    color: var(--defaultColor2);
     font-size: 20px;
     font-weight: bold;
     margin-top: 5%;
@@ -117,7 +130,7 @@ body::-webkit-scrollbar-thumb:hover {
     margin-top: 5%;
     margin-left: 3%;
     font-family: 'Ubuntu Mono', monospace;
-    color: seagreen;
+    color: var(--defaultColor2);
     background-color: transparent;
     border: 2px solid #333333;
     border-radius: 16px;
@@ -127,22 +140,21 @@ body::-webkit-scrollbar-thumb:hover {
     transition: all 0.2s;
 }
 .FilePath-input:focus{
-    border: 2px solid seagreen;
+    border: 2px solid var(--defaultColor);
     border-radius: 16px;
     padding: 10px;
 }
     /* TYPE OF FILE STYLES */
-
 .Diagram-button{
     width: 20%;
     height: 50px;
     font-family: 'Ubuntu Mono', monospace;
     font-weight: bold;
-    color: #26e083;
+    color: var(--defaultColor2);
     background-color: transparent;
-    border: 2px solid #07854642;
-    border-top-color: #078546;
-    border-left-color: #078546;
+    border: 2px solid var(--defaultColor3);
+    border-top-color: var(--defaultColor);
+    border-left-color: var(--defaultColor);
     border-radius: 64px;
     padding: 10px;
     font-size: 18px;
@@ -153,10 +165,10 @@ body::-webkit-scrollbar-thumb:hover {
     cursor: pointer;
 }
 .Diagram-button:hover{
-    border-top-color: #07854642;
-    border-left-color: #07854642;
-    border-bottom-color: #078546;
-    border-right-color: #078546;
+    border-top-color: var(--defaultColor3);
+    border-left-color: var(--defaultColor3);
+    border-bottom-color: var(--defaultColor);
+    border-right-color: var(--defaultColor);
 }
 .buttons-animation:hover{
     animation: pulse !important;
@@ -167,11 +179,11 @@ body::-webkit-scrollbar-thumb:hover {
     height: 50px;
     font-family: 'Ubuntu Mono', monospace;
     font-weight: bold;
-    color: #26e083;
+    color: var(--defaultColor2);
     background-color: transparent;
-    border: 2px solid #07854642;
-    border-right-color: #078546;
-    border-bottom-color: #078546;
+    border: 2px solid var(--defaultColor3);
+    border-right-color: var(--defaultColor);
+    border-bottom-color: var(--defaultColor);
     border-radius: 64px;
     padding: 10px;
     font-size: 18px;
@@ -183,10 +195,10 @@ body::-webkit-scrollbar-thumb:hover {
     cursor: pointer;
 }
 .Graphic-button:hover{
-    border-right-color: #07854642;
-    border-bottom-color: #07854642;
-    border-top-color: #078546;
-    border-left-color: #078546;
+    border-right-color: var(--defaultColor3);
+    border-bottom-color: var(--defaultColor3);
+    border-top-color: var(--defaultColor);
+    border-left-color: var(--defaultColor);
 }
 .typesList-select{
     appearance: none;
@@ -198,16 +210,16 @@ body::-webkit-scrollbar-thumb:hover {
     padding: 5px 20px 5px 20px;
     background-color: #313131;
     text-align: center;
-    color: #26e083;
+    color: var(--defaultColor2);
     font-family: 'Ubuntu Mono';
     outline: none;
 }
 .typesList-option{
-    color: #44775e;
+    color: var(--defaultColor3);
 }
 .typesList-b{
     font-weight: bold;
-    color: #56ca92;
+    color: var(--defaultColor);
 }
 .diagramOption{
     display: none;
@@ -222,16 +234,16 @@ body::-webkit-scrollbar-thumb:hover {
     background: #8888882d;
 }
 .typesList-select::-webkit-scrollbar-thumb {
-    background: #13ad53c5;
+    background: var(--defaultColor);
 }
 .typesList-select::-webkit-scrollbar-thumb:hover {
-    background: #0a833cc5;
+    background: var(--defaultColor3);
 }
         /* FILE TEMPLATE STYLES*/
 .FileTemplate-text{
     font-family: 'Josefin Sans', sans-serif;
     display: inline-block;
-    color: seagreen;
+    color: var(--defaultColor2);
     font-size: 20px;
     font-weight: bold;
     margin-top: 5%;
@@ -280,7 +292,7 @@ body::-webkit-scrollbar-thumb:hover {
     transition: all 0.3s;
 }
 .templates-container .template-text{
-    color: #56ca92;
+    color: var(--defaultColor2);
     width: 100%;
     padding-bottom: 30px;
     font-family: 'Josefin Sans', sans-serif;
@@ -325,11 +337,11 @@ body::-webkit-scrollbar-thumb:hover {
     width: 100px;
     float: right;
     font-family: monospace;
-    color: #26e083;
+    color: var(--defaultColor2);
     background-color: transparent;
-    border: 2px solid #07854642;
-    border-right-color: #078546;
-    border-bottom-color: #078546;
+    border: 2px solid var(--defaultColor3);
+    border-right-color: var(--defaultColor);
+    border-bottom-color: var(--defaultColor);
     border-radius: 64px;
     padding: 10px;
     font-size: 18px;
@@ -341,10 +353,10 @@ body::-webkit-scrollbar-thumb:hover {
     cursor: pointer;
 }
 .Go-button:hover{
-    border-top-color: #07854642;
-    border-left-color: #07854642;
-    border-bottom-color: #078546;
-    border-right-color: #078546;
+    border-top-color: var(--defaultColor3);
+    border-left-color: var(--defaultColor3);
+    border-bottom-color: var(--defaultColor);
+    border-right-color: var(--defaultColor);
     animation: pulse;
     animation-duration: 0.7s;
 }
@@ -352,11 +364,11 @@ body::-webkit-scrollbar-thumb:hover {
     width: 100px;
     float: right;
     font-family: monospace;
-    color: #26e083;
+    color: var(--defaultColor2);
     background-color: transparent;
-    border: 2px solid #07854642;
-    border-left-color: #078546;
-    border-top-color: #078546;
+    border: 2px solid var(--defaultColor3);
+    border-left-color: var(--defaultColor);
+    border-top-color: var(--defaultColor);
     border-radius: 64px;
     padding: 10px;
     font-size: 18px;
@@ -368,10 +380,10 @@ body::-webkit-scrollbar-thumb:hover {
     cursor: pointer;
 }
 .Cancel-button:hover{
-    border-right-color: #07854642;
-    border-bottom-color: #07854642;
-    border-top-color: #078546;
-    border-left-color: #078546;
+    border-right-color: var(--defaultColor3);
+    border-bottom-color: var(--defaultColor3);
+    border-top-color: var(--defaultColor);
+    border-left-color: var(--defaultColor);
     animation: pulse;
     animation-duration: 0.7s;
 }
