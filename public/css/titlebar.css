@@ -140,6 +140,8 @@ body::-webkit-scrollbar {
     text-align: center;
     border: none;
     border-left: 0.2px solid var(--navbarHr);
+    overflow: hidden;
+    font-size: 14px;
     float: right;
 }
 .notifications_box .notifications_body .notification_item .notification_item_text p{
