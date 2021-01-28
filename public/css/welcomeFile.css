@@ -21,6 +21,7 @@ ul{
     list-style-type: none;
 }
 a{
+    outline: none;
     color: var(--defaultColor);
     text-decoration: none;
     cursor: pointer;
@@ -73,6 +74,10 @@ a:hover{
     margin: 0;
     margin-top: 4px;
     padding: 0;
+}
+#customize_learn ul li:hover{
+    margin-left: -5px;
+    transition: all 0.3s;
 }
 #customize_learn ul li:hover > h3{
     color: var(--white);
