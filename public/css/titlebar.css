@@ -6,11 +6,19 @@
     --bgFiles: #272727;
     --bgFileSelected: #1f1f1f;
     --bgMain: #1f1f1f;
+    --bgExplorer: #292929;
+    --bgTitlebarButtonHover: #ffffff1a;
+    --TitlebarTitle: #b3b3b3;
+    --NavbarBtn: #6d6d6d;
+    --navbarHr: rgba(49, 49, 49, 0.582);
     --background-color: transparent;
+    --defaultColor: #ff3333;
+    --defaultColor2: #ff6666;
+    --white: #d6d6d6;
+    --gray: #9c9c9c;
+    --gray2: #8a8a8a;
 }
-
                 /* BODY STYLES*/
-
 html, body {
     margin: 0;
     padding: 0;
@@ -18,20 +26,15 @@ html, body {
     user-select: none;
     color: #FFF;
 }
-
 body::-webkit-scrollbar {
     display: none;
 }
-
-
                 /* TITLEBAR STYLES*/
-
 .title-bar {
     margin: 0;
     padding: 0;
     background-color: var(--bgTitlebar);
 }
-
 .bar {
     top: 0px;
     left: 0;
@@ -39,27 +42,23 @@ body::-webkit-scrollbar {
     width: 100%;
     overflow: hidden;
 }
-
 .title {
     float: left;
     margin: 3px 0 0 5px;
-    color: #b3b3b3;
+    color: var(--TitlebarTitle);
     font-family: sans-serif;
     font-size: 18px;
 }
-
 .title img {
     padding-top: 1px;
     width: 16px;
     float: left;
     margin-right: 7px
 }
-
 .right-btns {
     float: right;
-    color: #b3b3b3;
+    color: var(--TitlebarTitle);
 }
-
 .titlebar-btn {
     float: left;
     width: 20px;
@@ -68,21 +67,17 @@ body::-webkit-scrollbar {
     padding: 10px 10px;
     text-align: center;
     font-size: 18px;
-    color: #b3b3b3;
+    color: var(--TitlebarTitle);
     transition: all 0.2s;
 }
-
 .titlebar-btn:hover {
-    background: #ffffff1a;
-    color: #26c94a;
+    background: var(--bgTitlebarButtonHover);
+    color: var(--defaultColor);
 }
-
 .btn-devTools{
     padding: 8px 5px 12px 5px;
 }
-
                 /* NAVBAR STYLES*/
-
 .navbar{
     display: inline-block;
     position: relative;
@@ -93,38 +88,31 @@ body::-webkit-scrollbar {
     max-width: 4%;
     z-index: 2;
 }
-
 .navbar-btn {
     transition: all 0.1s;
 }
-
 .navbar-btn i{
     display: block;
-    color: #6d6d6d;
+    color: var(--NavbarBtn);
     font-size: 28px !important;
     width: 54px;
     padding-top: 15px;
     padding-bottom: 15px;
     text-align: center;
 }
-
 .navbar-btn i:hover{
     color: white;
 }
-
 .selectedNavbar{
-    border-left: 3px solid white;
+    box-shadow: inset 5px -1px 0px -2px white;
 }
-
 .selectedNavbar > i{
     color: white;
 }
-
 .bottom-buttons{
     position: absolute;
     bottom: 0px;
 }
-
 .navbar-show{
     display: inline-block;
     position: absolute;
@@ -141,47 +129,35 @@ body::-webkit-scrollbar {
     overflow: hidden;
     transition: all 0.5s;
 }
-
 .navbar-show hr {
-    border: 0.1px solid rgba(49, 49, 49, 0.582);
+    border: 0.1px solid var(--navbarHr);
 }
-
 .navbar-show .navbar-show-i{
-    color: #b3b3b3;
+    color: var(--TitlebarTitle);
     cursor: pointer;
     margin-left: 30px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
-
 .navbar-show > .sections-open-buttons{
     font-family: 'PT Mono', monospace;
     font-weight: 400;
     font-size: 13px;
     cursor: pointer;
-    color: #b3b3b3;
+    color: var(--TitlebarTitle);
     margin-top: 15px;
     margin-bottom: 15px;
 }
-
 .navbar-section-explorer::-webkit-scrollbar {
     width: 3px;
     height: 1px;
 }
-
 .navbar-section-explorer::-webkit-scrollbar-track {
     background: transparent;
 }
-
 .navbar-section-explorer::-webkit-scrollbar-thumb {
-    background: #13ad534f;
+    background: var(--defaultColor);
 }
-
-.navbar-section-explorer::-webkit-scrollbar-thumb:hover {
-    background: #0a833c4f;
-}
-
-
 .navbar-section-explorer{
     display: inline-block;
     margin-top: 10px;
@@ -191,25 +167,22 @@ body::-webkit-scrollbar {
     min-width: 320px;
     max-height: 0px;
     max-width: 320px;
-    background-color: #292929;
+    background-color: var(--bgExplorer);
     border-top-left-radius: 16px;
     border-bottom-left-radius: 16px;
     overflow: auto;
     transition: all 0.5s;
 }
-
 .navbar-section-explorer > table{
     display: inline-block;
     position: relative;
     min-width: 100%;
     max-width: 100%;
 }
-
 .navbar-section-explorer table tr {
     display: flex;
     flex-wrap: wrap;
 }
-
 .navbar-section-explorer table tr td {
     margin: 0;
     margin-top: 12px;
@@ -224,83 +197,65 @@ body::-webkit-scrollbar {
     text-align: center;
     cursor: pointer;
 }
-
 .navbar-section-explorer table tr td .explorer-text {
     display: inherit;
-    color: #d6d6d6;
+    color: var(--white);
     margin-top: 5px;
 }
-
 .navbar-section-explorer table tr td .explorer-shortcut {
     display: inherit;
     margin-top: 2px;
     font-size: 12px;
     font-family: 'Ubuntu Mono', monospace;
-    color: #9c9c9c;
+    color: var(--gray);
 }
-
 .navbar-section-openFileList{
     margin-top: 10px;
 }
-
 .navbar-section-openFileList i{
     margin-left: 30px;
-    color: rgb(37, 206, 122);
+    color: var(--defaultColor2);
     opacity: 0%;
     transition: all 0.5s;
 }
-
 .navbar-section-openFileList span{
     opacity: 0%;
     transition: all 0.5s;
 }
-
 .navbar-section-workspaces{
     margin-top: 10px;
 }
-
 .navbar-section-workspaces i{
     margin-left: 30px;
-    color: rgb(37, 206, 122);
+    color: var(--defaultColor2);
     opacity: 0%;
     transition: all 0.5s;
 }
-
 .navbar-section-workspaces span{
     opacity: 0%;
     transition: all 0.5s;
 }
-
-
 .showWithMargin {
     margin-left: 0px !important;
 }
-
 .moveTheMargin {
     margin-left: 350px !important;
 }
-
 .adjustWidth {
     min-width: calc(96% - 350px);
     max-width: calc(96% - 350px);
 }
-
 .showWithHeight {
     min-height: 300px !important;
     max-height: 300px !important;
 }
-
 .showWithOpacity{
     opacity: 100% !important;
 }
-
 .btn-styles-show{
     display: none;
 }
-
-
                 /* FILES NAVBAR STYLES*/
-
 .filesNavbar{
     display: inline-block;
     position: absolute;
@@ -316,16 +271,14 @@ body::-webkit-scrollbar {
     list-style-type: none;
     transition: all 0.5s;
 }
-
 .filesNavbar:hover{
     overflow-x: auto;
 }
-
 .filesNavbar .file{
     display: inline-flex;
     position: relative;
     background-color: var(--bgFiles);
-    color: #8a8a8a;
+    color: var(--gray2);
     margin-right: 1px;
     min-width: 160px;
     max-width: 200px;
@@ -334,7 +287,6 @@ body::-webkit-scrollbar {
     width: 160px;
     overflow: hidden;
 }
-
 .filesNavbar .file > img {
     position: absolute;
     left: 10px;
@@ -342,7 +294,6 @@ body::-webkit-scrollbar {
     width: 16px;
     height: 16px;
 }
-
 .filesNavbar .file > span {
     min-width: 90px;
     max-width: 90px;
@@ -351,48 +302,38 @@ body::-webkit-scrollbar {
     font-family: Arial;
     margin: auto;
 }
-
 .filesNavbar .file > i {
     display: none;
 }
-
-.filesNavbar .file:hover >i {
+.filesNavbar .file:hover > i {
     display: inline-block;
     position: absolute;
     right: 7px;
     top: 10px;
 }
-
 .filesNavbar .fileSelected {
     background-color: var(--bgMain);
 }
-
 .filesNavbar::-webkit-scrollbar {
     width: 3px;
     height: 3px;
 }
-
 .filesNavbar::-webkit-scrollbar-track {
     background: transparent;
 }
-
 .filesNavbar::-webkit-scrollbar-thumb {
-    background: #13ad534f;
+    background: #ff3333;
 }
-
 .filesNavbar::-webkit-scrollbar-thumb:hover {
-    background: #0a833c4f;
+    background: #ff3333c5;
 }
-
                 /* MATERIAL ICONS IMPORT */
-
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
   src: url(../fonts/Material.woff2) format('woff2');
 }
-
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -407,50 +348,38 @@ body::-webkit-scrollbar {
   direction: ltr;
   -webkit-font-smoothing: antialiased;
 }
-
 .material-icons.tiny {
 	font-size: 15px;
 	padding-bottom: 15px;
 }
-
                 /* OTHERS STYLES */
-
 .drag {
     -webkit-app-region:drag;
 }
-
 .no-drag {
     -webkit-app-region: no-drag
 }
-
 .pointer {
     cursor: pointer;
 }
-
 .hide {
     display: none;
 }
-
 .shortcut-or {
     color: #AAA;
 }
-
                 /* MEDIA QUERIES */
-
 @media only screen and (max-width: 800px) {
     .navbar {
         min-width: 6%;
         max-width: 6%;
     }
-
     .filesNavbar{
         min-width: 94%;
         max-width: 94%;
     }
-    
     .main {
         min-width: 94%;
         max-width: 94%;
     }
-
 }
