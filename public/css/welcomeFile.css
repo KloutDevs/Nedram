@@ -1,77 +1,83 @@
-    /* RECENTS FILES SECTION*/
-
-.recentFiles{
-    display: inline-block;
-    width: 40%;
-    max-width: 40%;
-    text-align: center;
+:root{
+    --defaultColor: #ff3333;
+    --gray: #727275;
+    --gray2: #98989a;
+    --black: #171717;
+    --white: #c3d0d2;
 }
-
-.recentFiles-title{
+    /* OTHERS */
+body{
+    color: var(--gray);
+}
+h5 {
     margin: 0;
-    margin-top: 15px;
-    font-size: 32px;
-    color: rgb(125, 194, 125);
+    font-size: 26px;
+    font-weight: normal;
 }
-
+ul{
+    margin: 0;
+    padding-top: 5px;
+    padding-left: 15px;
+    list-style-type: none;
+}
+a{
+    color: var(--defaultColor);
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover{
+    text-decoration: underline;
+}
+    /* START SECTION */
+#start{
+    width: 30%;
+}
+    /* RECENTS FILES SECTION*/
+#recentFiles{
+    margin-top: 10%;
+    width: 30%;
+}
 .recentFiles-list{
     list-style-type: none;
 }
-
-.recentFile-file{
-    margin-right: 30px;
-}
-
 .recentFile-link{
     cursor: pointer;
     font-family: 'Ubuntu Mono', monospace;
-    font-size: 14px;
-    color: #13ad53c5;
-    text-decoration: underline;
 }
-
-.recentFile-link:hover{
-    color: #0a833cc5;
-}
-
-    /* APP INFO SECTION */
-
-.app-info{
-    float: right;
-    display: inline-block;
+    /* HELP SECTION */
+#help{
     width: 30%;
-    max-width: 30%;
-    text-align: center;
+    margin-top: 10%;
 }
-
-.app-info-img{
-    width: 50%;
-    height: auto;
+    /* CUSTOMIZE SECTION */
+#customize_learn{
+    width: 40%;
+    float: right;
 }
-
-@supports(object-fit: cover){
-    .app-info img{
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-    }
+#customize_learn ul{
+    padding: 0;
 }
-    /* BUTTONS-FOR-APP SECTION */
-
-.buttons-app-list{
-    list-style-type: none;
+#customize_learn ul li {
+    background-color: var(--black);
+    padding: 10px;
+    margin-top: 3px;
+    cursor: pointer;
 }
-
-.buttons-app-li > i{
-    font-size: 8px;
-    color: #146e3a;
+#customize_learn ul li h3{
+    font-size: 16px;
+    color: var(--gray2);
+    margin: 0;
+    padding: 0;
 }
-
-.buttons-app-link{
-    text-decoration: underline;
-    color: #20ca67;
+#customize_learn ul li p{
+    margin: 0;
+    margin-top: 4px;
+    padding: 0;
 }
-
-.buttons-app-link:hover{
-    color: #128040;
+#customize_learn ul li:hover > h3{
+    color: var(--white);
+    transition: color 0.5s;
+}
+#customize_learn .learn_title {
+    margin-top: 30px;
 }
